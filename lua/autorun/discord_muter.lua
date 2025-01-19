@@ -15,7 +15,7 @@ util.AddNetworkString(globals.network_strings.REQUEST_BOT_VERSION)
 
 print("DISCORD PRE CONVAR")
 
-CreateConVar(globals.con_vars.DEBUG, 0, FCVAR_UNREGISTERED, "Print debug messages to the Console")
+CreateConVar(globals.con_vars.DEBUG, 0, 1, "Print debug messages to the Console")
 CreateConVar(globals.con_vars.ENDPOINT, "http://localhost:37405", 1, "Sets the node bot endpoint.")
 CreateConVar(globals.con_vars.API_KEY, "", 1, "Sets the node bot api-key.")
 CreateConVar(globals.con_vars.DISCORD_NAME, "Discord", 1, "Sets the Plugin Prefix for helpermessages.") --The name which will be displayed in front of any Message
