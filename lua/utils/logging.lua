@@ -3,6 +3,10 @@ local globals = include("globals.lua")
 function getLogStatus()
     local isDebuggingEnabled = GetConVar(globals.con_vars.DEBUG):GetBool()
 
+    print("GETTING LOG STATUS")
+    print(tostring(isDebuggingEnabled))
+    print("#####")
+
     if isDebuggingEnabled == nil then
         isDebuggingEnabled = false
     end
