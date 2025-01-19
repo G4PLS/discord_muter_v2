@@ -10,6 +10,14 @@ function getLogStatus()
     return isDebuggingEnabled
 end
 
+function logInfo(...)
+    local currentTime = os.date("%Y-%m-%d %H:%M:%S")
+
+    if getLogStatus() then
+        print(("%s [discord_muter_v2 INFO]:"):format(currentTime),...)
+    end
+end
+
 function logDebug(...)
     local currentTime = os.date("%Y-%m-%d %H:%M:%S")
 
