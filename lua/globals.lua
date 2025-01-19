@@ -24,7 +24,7 @@ globals = {
     muted_players = {}, -- (str, bool) | SteamID - Mute Status
     id_mapping = {}, -- (str, str) | SteamID - DiscordID
     idMappingContainsPlayer = function(ply)
-        local id = id_mapping[ply:SteamID64()]
+        local id = globals.id_mapping[ply:SteamID64()]
 
         if id == nil then
             return false
