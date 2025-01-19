@@ -1,0 +1,14 @@
+{
+    "title": "Discord Muter",
+    "description": "Addon to Mute people in discord",
+    "type": "servercontent",
+    "tags": [
+        "realism",
+        "fun",
+        "roleplay"
+    ],
+    "ignore": [
+        ".git/*",
+        "README.md"
+    ]
+}
