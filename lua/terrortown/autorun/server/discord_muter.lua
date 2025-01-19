@@ -17,9 +17,9 @@ util.AddNetworkString(globals.network_strings.BOT_VERSION)
 util.AddNetworkString(globals.network_strings.REQUEST_BOT_VERSION)
 
 CreateConVar(globals.con_vars.ENDPOINT, "http://localhost:37405", 1, "Sets the node bot endpoint.")
-CreateConVar(globals.con_vers.API_KEY, "", 1, "Sets the node bot api-key.")
+CreateConVar(globals.con_vars.API_KEY, "", 1, "Sets the node bot api-key.")
 CreateConVar(globals.con_vars.DISCORD_NAME, "Discord", 1, "Sets the Plugin Prefix for helpermessages.") --The name which will be displayed in front of any Message
 CreateConVar(globals.con_vars.SERVER_LINK, "https://discord.gg/", 1, "Sets the Discord server your bot is present on (eg: https://discord.gg/aBc123).")
-CreateConVar(globals.con_vers.MUTE_ROUND, 1, 1, "Mute the player until the end of the round.", 0, 1)
+CreateConVar(globals.con_vars.MUTE_ROUND, 1, 1, "Mute the player until the end of the round.", 0, 1)
 CreateConVar(globals.con_vars.MUTE_DURATION, 5, 1, "Sets how long, in seconds, you are muted for after death. No effect if mute_round is on. ", 1, 60)
 CreateConVar(globals.con_vars.AUTO_CONNECT, 0, 1, "Attempt to automatically match player name to discord name. This happens silently when the player connects. If it fails, it will prompt the user with the \"!discord NAME\" message.", 0, 1)
