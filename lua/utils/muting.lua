@@ -13,24 +13,28 @@ function checkValidPlayer(ply)
 end
 
 function setMuteStatus(ply, status)
-    if checkValidPlayer(ply) then
-        globals[tostring(ply:SteamID64())] = status
+    if not checkValidPlayer(ply) then
+        logError("Wasnt able to set player Status")
     end
+
+    globals[tostring(ply:SteamID64())] = status
+    logInfo("Set " .. tostring(ply:Nick()) .. " to " .. tostring(status))
 end
 
 function getMuteStatus(ply)
     if not checkValidPlayer(ply) then
+        logError("Wasnt able to get mute status for player, returning false")
         return false
     end
 
     status = globals[tostring(ply:SteamID64())]
 
-    if getLogStatus() then
-        logDebug("Mute status of player is:" .. tostring(status))
-    end
-
     if status == nil then
         status = false
+    end
+
+    if getLogStatus() then
+        logDebug("Mute status of" .. tostring(ply:Nick()) .. " is: " .. tostring(status))
     end
 
     return status
