@@ -2,9 +2,14 @@ include("utils/logging.lua")
 local globals = include("globals.lua")
 
 function sendHttpRequest(ply, msg)
+    if not globals.idMappingContainsPlayer(ply) then
+        logError("Cant send http Request, id mappings dont contain player " .. tostring(ply:Nick()))
+        return
+    end
+
     httpFetch("mute", {
         mute = getMuteStatus(ply),
-        id = globals.id_mapping(ply:SteamID64())
+        id = globals.id_mapping[ply:SteamID64()]
     }, function(response)
         if not getLogStatus() then
             return
@@ -51,7 +56,7 @@ function getMuteStatus(ply)
     end
 
     if getLogStatus() then
-        logDebug("Mute status of" .. tostring(ply:Nick()) .. " is: " .. tostring(status))
+        logDebug("Mute status of " .. tostring(ply:Nick()) .. " is: " .. tostring(status))
     end
 
     return status
