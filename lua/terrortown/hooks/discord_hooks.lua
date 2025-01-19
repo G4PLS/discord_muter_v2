@@ -1,4 +1,4 @@
-include("utils/logging.lua")
+include("terrortown/utils/logging.lua")
 
 print("Discord Loading Hooks")
 

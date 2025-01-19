@@ -1,4 +1,4 @@
-include("hooks/discord_hooks.lua")
+include("terrortown/hooks/discord_hooks.lua")
 
 print("Discord Autorun Server")
 
