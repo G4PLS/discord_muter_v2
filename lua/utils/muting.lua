@@ -18,7 +18,7 @@ function setMuteStatus(ply, status)
     end
 
     globals[tostring(ply:SteamID64())] = status
-    logInfo("Set " .. tostring(ply:Nick()) .. " to " .. tostring(status))
+    logInfo("Set Mute Status of " .. tostring(ply:Nick()) .. " to " .. tostring(status))
 end
 
 function getMuteStatus(ply)
@@ -41,16 +41,17 @@ function getMuteStatus(ply)
 end
 
 function mutePlayer(ply)
-    print("DISCORD MUTING PLAYER")
+    logInfo("Muting Player")
     setMuteStatus(ply, true)
 end
 
 function unmutePlayer(ply)
-    print("DISCORD UNMUTING PLAYER")
+    logInfo("Unmuting Player")
     setMuteStatus(ply, false)
 end
 
 function muteAll()
+    logInfo("Muting every Player")
     local players = player.GetAll()
 
     for _, ply in ipairs(players) do
@@ -59,6 +60,7 @@ function muteAll()
 end
 
 function unmuteAll()
+    logInfo("Unmuting every Player")
     local players = player.GetAll()
 
     for _, ply in ipairs(players) do
