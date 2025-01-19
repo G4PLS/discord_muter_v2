@@ -20,7 +20,9 @@ globals = {
         REQUEST_ADDON_VERSION = "request_addonVersion",
         BOT_VERSION = "botVersion",
         REQUEST_BOT_VERSION = "request_botVersion"
-    }
+    },
+    muted_players = {}, -- (str, bool) | SteamID - Mute Status
+    id_mapping = {} -- (str, str) | SteamID - DiscordID
 }
 
 return globals
