@@ -1,9 +1,5 @@
 include("utils/logging.lua")
 
-print("DISCORD PRE DEBUG HOOK")
-
-log_debug("HOOKS V1")
-
 hook.Add("TTT2PrePrepareRound", "MuterPreBeginRound", function(duration)
     log_debug("PRE BEGIN ROUND")
 end)
