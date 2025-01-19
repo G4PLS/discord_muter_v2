@@ -1,5 +1,7 @@
 include("utils/logging.lua")
 
+print("Discord Loading Hooks")
+
 hook.Add("TTT2PrePrepareRound", "MuterPreBeginRound", function(duration)
     log_debug("PRE BEGIN ROUND")
 end)
