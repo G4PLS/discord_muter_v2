@@ -1,4 +1,4 @@
-CreateConVar("DiscordDebug", 0, FCVAR_UNREGISTERED, "Print debug messages to the Console")
+CreateConVar("discord_debug", 0, FCVAR_UNREGISTERED, "Print debug messages to the Console")
 
 function log_debug(...)
     local isDebuggingEnabled = GetConVar("DiscordDebug"):GetBool()
