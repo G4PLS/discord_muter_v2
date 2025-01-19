@@ -1,5 +1,11 @@
 globals = include("globals.lua")
 
+print("LOGGING")
+print(GetConVar(globals.con_vars.DEBUG))
+print(GetConVar(globals.con_vars.DEBUG):GetBool())
+print(GetConVar(globals.con_vars.DEBUG):GetInt())
+print(GetConVar(globals.con_vars.DEBUG):GetString())
+print("########")
 function log_debug(...)
     print("DISCORD DEBUG LOGGING", ...)
     local isDebuggingEnabled = GetConVar(globals.con_vars.DEBUG):GetBool()
