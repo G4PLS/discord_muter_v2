@@ -37,10 +37,12 @@ function getMuteStatus(ply)
 end
 
 function mutePlayer(ply)
+    print("DISCORD MUTING PLAYER")
     setMuteStatus(ply, true)
 end
 
 function unmutePlayer(ply)
+    print("DISCORD UNMUTING PLAYER")
     setMuteStatus(ply, false)
 end
 
