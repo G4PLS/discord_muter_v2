@@ -1,4 +1,4 @@
-globals = include("globals.lua")
+local globals = include("globals.lua")
 
 util.AddNetworkString(globals.network_strings.DRAW_MUTE)
 util.AddNetworkString(globals.network_strings.CONNECT_DISCORD_ID)
