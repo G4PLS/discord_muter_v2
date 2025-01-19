@@ -1,6 +1,23 @@
 include("utils/logging.lua")
 local globals = include("globals.lua")
 
+function sendHttpRequest(ply, msg)
+    httpFetch("mute", {
+        mute = getMuteStatus(ply),
+        id = globals.id_mapping(ply:SteamID64())
+    }, function(response)
+        if not getLogStatus() then
+            return
+        end
+
+        if response and response.success then
+            logInfo("Http Response was OK, player mute state should be changed in discord")
+        else
+            logError("Http Response was NOT OK, player mute state probably didnt get changed")
+        end
+    end)
+end
+
 function checkValidPlayer(ply)
     if IsValid(ply) then
         return true
@@ -42,12 +59,23 @@ end
 
 function mutePlayer(ply)
     logInfo("Muting Player")
+
     setMuteStatus(ply, true)
+    sendHttpRequest(ply, "Muting Player")
+
+    local mute_round = GetConVar(globals.con_vars.MUTE_ROUND)
+
+    if not mute_round then
+        local duration = GetConVar(globals.con_vars.MUTE_DURATION)
+        time.Simple(duration, function() unmutePlayer(ply) end)
+    end
 end
 
 function unmutePlayer(ply)
     logInfo("Unmuting Player")
+
     setMuteStatus(ply, false)
+    sendHttpRequest(ply, "Muting Player")
 end
 
 function muteAll()
