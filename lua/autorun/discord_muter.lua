@@ -24,6 +24,16 @@ CreateConVar(globals.con_vars.MUTE_ROUND, 1, 1, "Mute the player until the end o
 CreateConVar(globals.con_vars.MUTE_DURATION, 5, 1, "Sets how long, in seconds, you are muted for after death. No effect if mute_round is on. ", 1, 60)
 CreateConVar(globals.con_vars.AUTO_CONNECT, 0, 1, "Attempt to automatically match player name to discord name. This happens silently when the player connects. If it fails, it will prompt the user with the \"!discord NAME\" message.", 0, 1)
 
+print("CONVARS:")
+print(GetConVar(globals.con_vars.DEBUG))
+print(GetConVar(globals.con_vars.ENDPOINT))
+print(GetConVar(globals.con_vars.API_KEY))
+print(GetConVar(globals.con_vars.DISCORD_NAME))
+print(GetConVar(globals.con_vars.SERVER_LINK))
+print(GetConVar(globals.con_vars.MUTE_ROUND))
+print(GetConVar(globals.con_vars.MUTE_DURATION))
+print(GetConVar(globals.con_vars.AUTO_CONNECT))
+
 print("DISCORD PRE INCLUDE")
 
 include("utils/logging.lua")
