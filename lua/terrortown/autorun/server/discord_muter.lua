@@ -1,6 +1,7 @@
 include("terrortown/hooks/discord_hooks.lua")
+include("terrortown/utils/logging.lua")
 
-print("Discord Autorun Server")
+log_debug("AUTORUN SERVER V1")
 
 util.AddNetworkString("drawMute")
 util.AddNetworkString("connectDiscordID")

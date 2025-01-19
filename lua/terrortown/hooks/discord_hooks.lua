@@ -1,6 +1,6 @@
 include("terrortown/utils/logging.lua")
 
-print("Discord Loading Hooks")
+log_debug("HOOKS V1")
 
 hook.Add("TTT2PrePrepareRound", "MuterPreBeginRound", function(duration)
     log_debug("PRE BEGIN ROUND")
