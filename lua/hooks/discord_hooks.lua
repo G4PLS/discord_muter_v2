@@ -1,4 +1,4 @@
-include("terrortown/utils/logging.lua")
+include("utils/logging.lua")
 
 print("DISCORD PRE DEBUG HOOK")
 

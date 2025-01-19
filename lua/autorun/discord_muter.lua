@@ -1,4 +1,4 @@
-globals = include("terrortown/autorun/globals.lua")
+globals = include("globals.lua")
 
 print("DISCORD PRE NETWORK")
 
@@ -26,8 +26,8 @@ CreateConVar(globals.con_vars.AUTO_CONNECT, 0, 1, "Attempt to automatically matc
 
 print("DISCORD PRE INCLUDE")
 
-include("terrortown/utils/logging.lua")
-include("terrortown/hooks/discord_hooks.lua")
+include("utils/logging.lua")
+include("hooks/discord_hooks.lua")
 
 print("DISCORD PRE LOG SERVER")
 
