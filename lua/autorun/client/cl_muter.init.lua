@@ -3,6 +3,7 @@ local globals = include("globals.lua")
 
 concommand.Add(globals.con_vars.DEBUG,
 function(ply, cmd, args, argStr)
+    PrintTable(args)
     net.Start(globals.network.server.DEBUG)
     net.WriteBool(args[0])
     net.SendToServer()
