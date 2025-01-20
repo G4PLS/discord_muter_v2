@@ -1,5 +1,6 @@
 include("globals/sh_globals.lua")
 include("globals/sv_globals.lua")
+include("discord_integration/sv_discord_id_caching.lua")
 
 local logger = include("utils/logger.lua")
 
@@ -12,9 +13,10 @@ function isSuperAdmin(cmd, ply)
 end
 
 -- Receiving from Client
-net.Receive(globals.network.server.MUTE_ROUND, function(len, ply)
-    if isSuperAdmin(globals.network.server.MUTE_ROUND, ply) then
-        local mute_round = net.ReadBit()
-        RunConsoleCommand(globals.con_vars.MUTE_ROUND, tostring(mute_round))
-    end
+net.Receive(network.server.ADD_USER_DISCORD_ID, function(len, ply)
+    local discord_id = net.ReadString()
+    print(ply:Nick())
+    print(discord_id)
+
+    addConnectionID(ply, discord_Id)
 end)
