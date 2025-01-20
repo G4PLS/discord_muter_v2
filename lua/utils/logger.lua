@@ -44,9 +44,6 @@ logger.containsLogLevel = function(log_level)
 end
 
 logger.print = function(log_level, msg)
-    print("DISCORD TRYING TO PRINT LOG")
-    print(tostring(logger.containsLogLevel(log_level)))
-
     if not logger.containsLogLevel(log_level) then
         return
     end
