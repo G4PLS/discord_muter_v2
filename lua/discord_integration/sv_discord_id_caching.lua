@@ -22,6 +22,7 @@ function getConnectionIDs()
     else
         logger.logError("ConnectionID cache failure")
     end
+    return connections
 end
 
 function writeConnectionIDs(connections)
