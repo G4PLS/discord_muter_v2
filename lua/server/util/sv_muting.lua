@@ -12,7 +12,7 @@ end
 function discordMute(ply)
     logInfo("Trying to send mute request to discord")
 
-    baseRequest("mute", {
+    discordRequest("mute", {
         mute = getMuteStatus(ply),
         id = getIdMappingByPlayer(ply)
     }, function(response)
