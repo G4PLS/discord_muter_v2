@@ -13,6 +13,8 @@ function backupConnectionIDs(connections)
 end
 
 function loadConnectionIDs()
+    logger.logInfo("Attempting to collect from ConnectionID cache")
+
     local id_mapping_cache = file.Read(ID_MAPPING_CACHE_PATH .. ".json", "DATA")
 
     if not id_mapping_cache then
@@ -22,12 +24,8 @@ function loadConnectionIDs()
 
     local json_id_mapping_cache = util.JSONToTable(id_mapping_cache, false, true)
 
-    logger.logInfo("Attempting to collect from ConnectionID cache")
-    logger.logTable(json_id_mapping_cache, "Connection Cache", "Printing Connection Cache")
-
     _G.id_mapping = json_id_mapping_cache
     logger.logInfo("ConnectionID cache collected")
-    logger.logTable(_G.id_mapping, "Connection Mapping", "Printing final Connection Mappings")
 end
 
 function writeConnectionIDs()
@@ -35,8 +33,6 @@ function writeConnectionIDs()
     file.Write(ID_MAPPING_CACHE_PATH .. ".json", json_table)
 
     local written_connections = file.Read(ID_MAPPING_CACHE_PATH .. ".json", "DATA")
-    logger.logInfo(tostring(util.TableToJSON(_G.id_mapping, true)))
-    logger.logInfo(written_connections)
 
     if written_connections == util.TableToJSON(_G.id_mapping, true) then
         logger.logInfo("Cache written!")
@@ -50,24 +46,17 @@ function clearConnectionIDs()
 
     _G.id_mapping = {}
     writeConnectionIDs()
-
-    logger.logTable(_G.id_mapping, "ConnectionIDs", "Cleared Connections from Table")
 end
 
 function addConnectionID(ply, discordID)
     logger.logInfo("Adding " .. ply:Nick() .. " to ids, with id: " .. discordID)
-
     _G.id_mapping[playerIdToString(ply)] = discordID
     writeConnectionIDs()
-
-    logger.logTable(_G.id_mapping, "ConnectionIDs", "Added Player to Table")
 end
 
 function removeConnectionID(ply)
     _G.id_mapping[playerIdToString(ply)] = nil
     writeConnectionIDs()
-
-    logger.logTable(_G.id_mapping, "ConnectionIDs", "Removed Player from Table")
 end
 
 function containsConnectionID(ply)

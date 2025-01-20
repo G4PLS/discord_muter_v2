@@ -1,9 +1,9 @@
 local logger = include("utils/logger.lua")
-local globals = include("globals.lua")
+local globals = include("muter_globals/sh_globals.lua")
 
 function httpFetch(req, params, callback, tries)
     local default_tries = 3
-    httpsAdress = GetConVar(globals.con_vars.ENDPOINT):GetString()
+    httpsAdress = GetConVar(con_vars.ENDPOINT):GetString()
     http.Fetch(httpsAdress .. "/" .. req, function(res)
         if util.JSONToTable(res).errorMsg then logger.logError(util.JSONToTable(res).errorMessage) end
         callback(util.JSONToTable(res))

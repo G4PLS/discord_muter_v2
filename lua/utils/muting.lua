@@ -1,6 +1,7 @@
 include("muter_globals/sh_globals.lua")
 include("utils/id_helper.lua")
 include("discord_integration/sv_id_mapper.lua")
+include("network/http.lua")
 
 local logger = include("utils/logger.lua")
 
