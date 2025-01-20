@@ -1,20 +1,15 @@
 local globals = include("globals.lua")
 -- Setup Client commands
 
-concommand.Add(globals.con_vars.DEBUG, 
+concommand.Add(globals.con_vars.DEBUG,
 function(ply, cmd, args, argStr)
-    print(ply:Nick())
-    print(cmd)
-    print(args)
-    PrintTable(args)
-    print(argsStr)
-    --net.Start(globals.network.server.DEBUG)
+    net.Start(globals.network.server.DEBUG)
+    net.WriteBool(args[0])
+    net.Send()
 end,
-function(cmd, argStr, args) 
+function(cmd, argStr, args)
     return {
         cmd .. " 1",
         cmd .. " 0"
     }
-end,
-
-"Helping text for this")
+end)
