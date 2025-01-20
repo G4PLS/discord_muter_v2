@@ -12,6 +12,15 @@ util.AddNetworkString(globals.network_strings.REQUEST_ADDON_VERSION)
 util.AddNetworkString(globals.network_strings.BOT_VERSION)
 util.AddNetworkString(globals.network_strings.REQUEST_BOT_VERSION)
 
+util.AddNetworkString("ServerCMD")
+
+net.Receive("ServerCMD", function(len, ply)
+    print(ply:Nick())
+    print(len)
+    print(net.ReadString())
+    print("######")
+end)
+
 CreateConVar(globals.con_vars.DEBUG, 0, {FCVAR_ARCHIVE, FCVAR_NOTIFY}, "Print debug messages to the Console")
 CreateConVar(globals.con_vars.LOG_TIME, 1, {FCVAR_ARCHIVE, FCVAR_NOTIFY}, "Print the time when debugging")
 CreateConVar(globals.con_vars.LOG_LEVELS, "INFO|WARN|DEBUG|ERROR", {FCVAR_ARCHIVE, FCVAR_NOTIFY}, "Log levels to print")
