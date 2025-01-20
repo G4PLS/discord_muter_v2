@@ -1,4 +1,4 @@
-include("sh_globals.lua")
+include("muter_globals/sh_globals.lua")
 
 -- 460863943628554260
 concommand.Add("muter_add_id",
