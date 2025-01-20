@@ -20,7 +20,7 @@ function loadConnectionIDs()
         return
     end
 
-    local json_id_mapping_cache = util.JSONToTable(id_mapping_cache)
+    local json_id_mapping_cache = util.JSONToTable(id_mapping_cache, false, true)
 
     logger.logInfo("Attempting to collect from ConnectionID cache")
     logger.logTable(json_id_mapping_cache, "Connection Cache", "Printing Connection Cache")
