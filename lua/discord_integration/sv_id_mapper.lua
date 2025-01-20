@@ -76,6 +76,10 @@ function autoMapPlayer(ply)
         return
     end
 
+    logger.logDebug(ply:Name())
+    logger.logDebug(ply:Nick())
+    logger.logDebug("-------")
+
     tag = ply:Name()
     tag_utf8 = ""
     for p, c in utf8.codes(tag) do
