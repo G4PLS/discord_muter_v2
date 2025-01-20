@@ -1,6 +1,7 @@
 globals = {
     con_vars = {
         DEBUG = "discord_muter_debug",
+        LOG_TIME = "discord_muter_log_time",
         ENDPOINT = "discord_muter_endpoint",
         API_KEY = "discord_muter_api_key",
         DISCORD_NAME = "discord_muter_name",
@@ -23,15 +24,16 @@ globals = {
     },
     muted_players = {}, -- (str, bool) | SteamID - Mute Status
     id_mapping = {}, -- (str, str) | SteamID - DiscordID
-    idMappingContainsPlayer = function(ply)
-        local id = globals.id_mapping[ply:SteamID64()]
-
-        if id == nil then
-            return false
-        else
-            return true
-        end
-    end
 }
+
+globals.idMappingContainsPlayer = function(ply)
+    local id = globals.id_mapping[ply:SteamID64()]
+
+    if id == nil then
+        return false
+    else
+        return true
+    end
+end
 
 return globals

@@ -11,6 +11,8 @@ util.AddNetworkString(globals.network_strings.BOT_VERSION)
 util.AddNetworkString(globals.network_strings.REQUEST_BOT_VERSION)
 
 CreateConVar(globals.con_vars.DEBUG, 0, {FCVAR_ARCHIVE, FCVAR_NOTIFY}, "Print debug messages to the Console")
+CreateConVar(globals.con_vars.LOG_TIME, 1, {FCVAR_ARCHIVE, FCVAR_NOTIFY}, "Print the time when debugging")
+CreateConVar(globals.con_vars.LOG_LEVELS, "INFO|WARN|DEBUG|ERROR", {FCVAR_ARCHIVE, FCVAR_NOTIFY}, "Log levels to print")
 CreateConVar(globals.con_vars.ENDPOINT, "http://localhost:37405", {FCVAR_ARCHIVE, FCVAR_NOTIFY}, "Sets the node bot endpoint.")
 CreateConVar(globals.con_vars.API_KEY, "", {FCVAR_ARCHIVE, FCVAR_NOTIFY}, "Sets the node bot api-key.")
 CreateConVar(globals.con_vars.DISCORD_NAME, "Discord", {FCVAR_ARCHIVE, FCVAR_NOTIFY}, "Sets the Plugin Prefix for helpermessages.")
@@ -20,5 +22,8 @@ CreateConVar(globals.con_vars.MUTE_ROUND, 1, {FCVAR_ARCHIVE, FCVAR_NOTIFY}, "Mut
 CreateConVar(globals.con_vars.MUTE_DURATION, 5, {FCVAR_ARCHIVE, FCVAR_NOTIFY}, "Sets how long, in seconds, you are muted for after death. No effect if mute_round is on. ", 1, 60)
 CreateConVar(globals.con_vars.AUTO_CONNECT, 0, {FCVAR_ARCHIVE, FCVAR_NOTIFY}, "Attempt to automatically match player name to discord name. This happens silently when the player connects. If it fails, it will prompt the user with the \"!discord NAME\" message.", 0, 1)
 
-include("utils/logging.lua")
+local logger = include("utils/logger.lua")
+logger.setLogLevels(GetConVar(globals.con_vars.LOG_LEVELS):GetString(), "|")
+logger.logInfo("DEMO INFO PRINT")
+
 include("hooks/discord_hooks.lua")
