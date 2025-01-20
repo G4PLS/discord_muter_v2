@@ -1,5 +1,5 @@
+include("utils/id_helper.lua")
 local logger = include("utils/logger.lua")
-include("muter_globals/sv_globals.lua")
 
 local CONNECTION_CACHE_PATH = "discord_connection_cache"
 local connections = {}

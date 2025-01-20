@@ -1,5 +1,6 @@
 include("muter_globals/sh_globals.lua")
 include("muter_globals/sv_globals.lua")
+include("utils/id_helper.lua")
 
 local logger = include("utils/logger.lua")
 
