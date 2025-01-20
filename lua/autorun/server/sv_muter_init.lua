@@ -32,6 +32,7 @@ CreateConVar(con_vars.MUTE_DURATION, 5, {FCVAR_ARCHIVE, FCVAR_NOTIFY}, "Sets how
 CreateConVar(con_vars.AUTO_CONNECT, 0, {FCVAR_ARCHIVE, FCVAR_NOTIFY}, "Attempt to automatically match player name to discord name. This happens silently when the player connects. If it fails, it will prompt the user with the \"!discord NAME\" message.", 0, 1)
 
 local logger = include("utils/logger.lua")
+logger.setLogLevels(GetConVar(con_vars.LOG_LEVELS):GetString(), '|')
 logger.logInfo("SERVER LOADED EVERYTHING CORRECTLY")
 
 include("hooks/sv_discord_muter_hooks.lua")

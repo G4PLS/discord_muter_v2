@@ -76,6 +76,4 @@ logger.logError = function(...)
     logger.print("ERROR", ...)
 end
 
-logger.setLogLevels(GetConVar(con_vars.LOG_LEVELS):GetString(), '|')
-
 return logger
