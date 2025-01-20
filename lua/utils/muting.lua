@@ -14,10 +14,6 @@ function sendHttpRequest(ply, msg)
         mute = getMuteStatus(ply),
         id = getIdMappingByPlayer(ply)
     }, function(response)
-        if not getLogStatus() then
-            return
-        end
-
         if response and response.success then
             logger.logInfo("Http Response was OK, player mute state should be changed in discord")
         else
@@ -31,10 +27,8 @@ function checkValidPlayer(ply)
         return true
     end
 
-    if getLogStatus() then
-        logger.logError("Player is not Valid!")
-        return false
-    end
+    logger.logError("Player is not Valid!")
+    return false
 end
 
 function setMuteStatus(ply, status)
@@ -59,9 +53,7 @@ function getMuteStatus(ply)
         status = false
     end
 
-    if getLogStatus() then
-        logger.logDebug("Mute status of " .. tostring(ply:Nick()) .. " is: " .. tostring(status))
-    end
+    logger.logDebug("Mute status of " .. tostring(ply:Nick()) .. " is: " .. tostring(status))
 
     return status
 end
