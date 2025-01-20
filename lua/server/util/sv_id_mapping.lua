@@ -92,10 +92,10 @@ function autoMapPlayer(ply)
         return
     end
 
-    httpFetch("connect", {
+    discordRequest("connect", {
         tag = ply:Nick()
-    }, function(res)
-        if res.tag and res.id then
+    }, function(response)
+        if response.tag and response.id then
             addConnectionID(ply, res.id)
             logInfo("Player " .. ply:Nick() .. " with id " .. playerIdToString(ply) .. " got bound to discord id " .. res.id)
         end

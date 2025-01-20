@@ -9,20 +9,17 @@ function canMute()
     return GetConVar(con_vars.ENABLE_MUTER):GetBool() or false
 end
 
-function sendHttpRequest(ply, msg)
-    if not containsConnectionID(ply) then
-        --logger.logError("Cant send http Request, id mappings dont contain player " .. tostring(ply:Nick()))
-        return
-    end
+function discordMute(ply)
+    logInfo("Trying to send mute request to discord")
 
-    httpFetch("mute", {
+    baseRequest("mute", {
         mute = getMuteStatus(ply),
         id = getIdMappingByPlayer(ply)
     }, function(response)
         if response and response.success then
-            --logger.logInfo("Http Response was OK, " .. ply:Nick() .. " mute state should be changed in discord")
+            logInfo("Http response was OK!")
         else
-            --logger.logError("Http Response was NOT OK, " .. ply:Nick() .. " mute state probably didnt get changed")
+            logError("Http response was NOT OK")
         end
     end)
 end
@@ -73,7 +70,7 @@ function mutePlayer(ply)
     logInfo("Trying to mute Player " .. ply:Nick())
 
     setMuteStatus(ply, true)
-    sendHttpRequest(ply, "Muting Player")
+    discordMute(ply)
 
     local duration = GetConVar(con_vars.MUTE_DURATION):GetInt()
 
@@ -88,7 +85,7 @@ function unmutePlayer(ply)
     logInfo("Trying to unmute player " .. ply:Nick())
 
     setMuteStatus(ply, false)
-    sendHttpRequest(ply, "Muting Player")
+    discordMute(ply)
 end
 
 function muteAll()
