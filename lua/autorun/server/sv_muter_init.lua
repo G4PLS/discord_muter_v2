@@ -42,6 +42,7 @@ loadConnectionIDs()
 
 include("hooks/sv_discord_muter_hooks.lua")
 include("network/sv_discord_muter_network.lua")
+include("commands/sv_muter_commands.lua")
 
 AddCSLuaFile("muter_globals/sh_globals.lua")
 AddCSLuaFile("commands/cl_muter_commands.lua")
