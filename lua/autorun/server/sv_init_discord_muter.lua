@@ -14,7 +14,7 @@ include("shared/globals/sh_globals.lua")
 -- Create Con Vars for Server
 CreateConVar(con_vars.DEBUG, 0, {FCVAR_ARCHIVE, FCVAR_NOTIFY}, "Print debug messages to the Console", 0, 1)
 CreateConVar(con_vars.LOG_TIME, 1, {FCVAR_ARCHIVE, FCVAR_NOTIFY}, "Print the time when debugging", 0, 1)
-CreateConVar(con_vars.LOG_LEVELS, "INFO|WARN|DEBUG|ERROR", {FCVAR_ARCHIVE, FCVAR_NOTIFY}, "Log levels to print")
+CreateConVar(con_vars.LOG_LEVELS, "WARN|DEBUG|ERROR", {FCVAR_ARCHIVE, FCVAR_NOTIFY}, "Log levels to print")
 CreateConVar(con_vars.BOT_ENDPOINT, "http://localhost:37405", {FCVAR_ARCHIVE, FCVAR_NOTIFY}, "Sets the node bot endpoint.")
 CreateConVar(con_vars.BOT_API_KEY, "", {FCVAR_ARCHIVE, FCVAR_NOTIFY}, "Sets the node bot api-key.")
 CreateConVar(con_vars.SERVER_LINK, "https://discord.gg/", {FCVAR_ARCHIVE, FCVAR_NOTIFY}, "Sets the Discord server your bot is present on (eg: https://discord.gg/aBc123).")
