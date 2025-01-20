@@ -14,6 +14,7 @@ end
 
 function loadConnectionIDs()
     local id_mapping_cache = file.Read(ID_MAPPING_CACHE_PATH .. ".json", "DATA")
+
     if not id_mapping_cache then
         logger.logError("Wasnt able to load Connection Cache")
         return
@@ -30,9 +31,13 @@ function loadConnectionIDs()
 end
 
 function writeConnectionIDs()
-    file.Write(ID_MAPPING_CACHE_PATH .. ".json", util.TableToJSON(_G.id_mapping, true))
+    local json_table = util.TableToJSON(_G.id_mapping, true)
+    file.Write(ID_MAPPING_CACHE_PATH .. ".json", json_table)
 
     local written_connections = file.Read(ID_MAPPING_CACHE_PATH .. ".json", "DATA")
+    logger.logInfo(tostring(util.TableToJSON(_G.id_mapping, true)))
+    logger.logTable(written_connections, "Written Connections", "Printing Connections that got written to cache file")
+
     if written_connections == util.TableToJSON(_G.id_mapping, true) then
         logger.logInfo("Cache written!")
     else
