@@ -16,7 +16,7 @@ function sendHttpRequest(ply, msg)
         id = getIdMappingByPlayer(ply)
     }, function(response)
         if response and response.success then
-            logger.logInfo("Http Response was OK, " ply:Nick() .. " mute state should be changed in discord")
+            logger.logInfo("Http Response was OK, " .. ply:Nick() .. " mute state should be changed in discord")
         else
             logger.logError("Http Response was NOT OK, " .. ply:Nick() .. " mute state probably didnt get changed")
         end
