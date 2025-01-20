@@ -3,7 +3,9 @@ local globals = include("muter_globals/sh_globals.lua")
 
 function httpFetch(req, params, callback, tries)
     local default_tries = 3
-    httpsAdress = GetConVar(con_vars.ENDPOINT):GetString()
+
+    httpsAdress = GetConVar(con_vars.BOT_ENDPOINT):GetString()
+
     http.Fetch(httpsAdress .. "/" .. req, function(res)
         if util.JSONToTable(res).errorMsg then logger.logError(util.JSONToTable(res).errorMessage) end
         callback(util.JSONToTable(res))
@@ -14,7 +16,7 @@ function httpFetch(req, params, callback, tries)
         if tries ~= 0 then httpFetch(req, params, callback, tries - 1) end
     end, {
         ["req"] = req,
-        ["authorization"] = "Basic " .. GetConVar(globals.con_vars.API_KEY):GetString(),
+        ["authorization"] = "Basic " .. GetConVar(con_vars.BOT_API_KEY):GetString(),
         ["params"] = util.TableToJSON(params)
     })
 end
