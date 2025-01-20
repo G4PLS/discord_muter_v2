@@ -3,7 +3,7 @@ local globals = include("globals.lua")
 
 function sendHttpRequest(ply, msg)
     if not globals.idMappingContainsPlayer(ply) then
-        logError("Cant send http Request, id mappings dont contain player " .. tostring(ply:Nick()))
+        logger.logError("Cant send http Request, id mappings dont contain player " .. tostring(ply:Nick()))
         return
     end
 
