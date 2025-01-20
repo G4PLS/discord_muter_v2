@@ -14,7 +14,7 @@ end
 
 function loadConnectionIDs()
     local id_mapping_cache = file.Read(ID_MAPPING_CACHE_PATH .. ".json", "DATA")
-    if id_mapping_cache then
+    if not id_mapping_cache then
         logger.logError("Wasnt able to load Connection Cache")
         return
     end
