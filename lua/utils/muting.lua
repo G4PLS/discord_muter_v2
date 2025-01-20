@@ -1,10 +1,11 @@
 include("muter_globals/sh_globals.lua")
 include("utils/id_helper.lua")
+include("discord_integration/sv_id_mapper.lua")
 
 local logger = include("utils/logger.lua")
 
 function sendHttpRequest(ply, msg)
-    if not idMappingContainsPlayer(ply) then
+    if not containsConnectionID(ply) then
         logger.logError("Cant send http Request, id mappings dont contain player " .. tostring(ply:Nick()))
         return
     end

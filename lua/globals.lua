@@ -1,4 +1,4 @@
-include("discord_integration/sv_discord_id_caching.lua")
+include("discord_integration/sv_id_mapper.lua")
 
 globals = {
     network_strings = {

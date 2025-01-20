@@ -22,9 +22,6 @@ function loadConnectionIDs()
     else
         logger.logError("ConnectionID cache failure")
     end
-
-    print("DISCORD GETTING CONNECTION IDS")
-    PrintTable(_G.id_mapping)
 end
 
 function writeConnectionIDs()
@@ -61,4 +58,12 @@ function removeConnectionID(ply)
     writeConnectionIDs()
 
     logger.logTable(_G.id_mapping, "ConnectionIDs", "Removed Player from Table")
+end
+
+function containsConnectionID(ply)
+    return _G.mapping[playerIdToString(ply)] ~= nil
+end
+
+function getIdMappingByPlayer(ply)
+    return _G.mapping[playerIdToString(ply)]
 end

@@ -37,7 +37,7 @@ local logger = include("utils/logger.lua")
 logger.setLogLevels(GetConVar(con_vars.LOG_LEVELS):GetString(), '|')
 logger.logInfo("SERVER LOADED EVERYTHING CORRECTLY")
 
-include("discord_integration/sv_discord_id_caching.lua")
+include("discord_integration/sv_id_mapper.lua")
 loadConnectionIDs()
 
 include("hooks/sv_discord_muter_hooks.lua")
