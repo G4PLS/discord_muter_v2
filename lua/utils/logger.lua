@@ -73,4 +73,9 @@ logger.logError = function(...)
     logger.print("ERROR", ...)
 end
 
+logger.logTable = function(tbl, table_name, msg)
+    logger.Info(msg .. " | Printing Table: " .. table_name)
+    PrintTable(tbl)
+end
+
 return logger

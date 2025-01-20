@@ -41,18 +41,27 @@ function writeConnectionIDs(connections)
     end
 end
 
+function clearConnectionIDs()
+    logger.logInfo("Clearing Connection IDs")
+    connections = {}
+    writeConnectionIDs(connections)
+
+    logger.logTable(connections, "ConnectionIDs", "Cleared Connections from Table")
+end
+
 function addConnectionID(ply, discordID)
-    print("DISCORD ADDING CONNECTION")
-    --logger.logInfo("Adding " .. ply:Nick() .. " to ids, with id: " .. discordID)
+    logger.logInfo("Adding " .. ply:Nick() .. " to ids, with id: " .. discordID)
     local player_id = playerIdToString(ply)
     connections[player_id] = discordID
     writeConnectionIDs(connections)
 
-    PrintTable(connection)
+    logger.logTable(connections, "ConnectionIDs", "Added Player to Table")
 end
 
 function removeConnectionID(ply)
     local player_id = playerIdToString(ply)
     connections[player_id] = nil
     writeConnectionIDs(connections)
+
+    logger.logTable(connections, "ConnectionIDs", "Removed Player from Table")
 end
