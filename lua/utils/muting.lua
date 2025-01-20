@@ -63,6 +63,7 @@ function mutePlayer(ply)
     logger.logInfo("Muting Player")
 
     setMuteStatus(ply, true)
+    sendHttpRequest(ply, "Muting Player")
 
     local duration = GetConVar(con_vars.MUTE_DURATION):GetInt()
 
