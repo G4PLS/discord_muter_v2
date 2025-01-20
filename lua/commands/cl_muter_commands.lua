@@ -1,16 +1,11 @@
 include("globals/sh_globals.lua")
 
-concommand.Add(globals.con_vars.MUTE_ROUND,
+-- 460863943628554260
+concommand.Add("muter_add_id",
 function(ply, cmd, args, argStr)
-    local mute_round = args[1] == "1"
+    local user_id = args[1]
 
-    net.Start(globals.network.server.MUTE_ROUND)
-    net.WriteBit(mute_round)
+    net.Start(network.server.ADD_USER_DISCORD_ID)
+    net.WriteString(user_id)
     net.SendToServer()
-end,
-function(cmd, argStr, args)
-    return {
-        globals.con_vars.MUTE_ROUND .. ' ' .. "1",
-        globals.con_vars.MUTE_ROUND .. ' ' .. "0"
-    }
 end)
