@@ -9,7 +9,7 @@ function isTimestampEnabled()
 end
 
 function containsLogLevel(log_level)
-    local log_level_string = GetConVar(con_vars.LOG_LEVELS)
+    local log_level_string = GetConVar(con_vars.LOG_LEVELS):GetString()
 
     local log_levels = {}
     for match in (log_level_string .. '|'):gmatch("(.-)" .. '|') do
