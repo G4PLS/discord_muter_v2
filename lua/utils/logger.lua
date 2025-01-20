@@ -1,4 +1,4 @@
-local globals = include("shared/globals.lua")
+local globals = include("globals.lua")
 
 logger = logger or {}
 

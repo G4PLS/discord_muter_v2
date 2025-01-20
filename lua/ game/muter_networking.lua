@@ -1,4 +1,4 @@
-local globals = include("shared/globals.lua")
+local globals = include("globals.lua")
 
 net.Receive(globals.network.server.DEBUG, function(len, ply)
     print(ply:Nick())
