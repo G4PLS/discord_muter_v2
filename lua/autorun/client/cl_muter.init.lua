@@ -1,1 +1,1 @@
-include("cl_muter_commands.lua")
+include("commands/cl_muter_commands.lua")
