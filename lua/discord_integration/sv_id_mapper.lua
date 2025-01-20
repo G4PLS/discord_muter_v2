@@ -15,10 +15,12 @@ end
 function loadConnectionIDs()
     local id_mapping_cache = file.Read(ID_MAPPING_CACHE_PATH .. ".json", "DATA")
     logger.logInfo("Attempting to collect from ConnectionID cache")
+    logger.logTable(id_mapping_cache, "Connection Cache", "Printing Connection Cache")
 
     if id_mapping_cache then
         _G.id_mapping = util.JSONToTable(id_mapping_cache)
         logger.logInfo("ConnectionID cache collected")
+        logger.logTable(_G.id_mapping, "Connection Mapping", "Printing final Connection Mappings")
     else
         logger.logError("ConnectionID cache failure")
     end
