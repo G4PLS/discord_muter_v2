@@ -6,7 +6,7 @@ include("network/http.lua")
 local logger = include("utils/logger.lua")
 
 function canMute()
-    local muting_enabled = GetconVar(con_vars.ENABLE_MUTER):GetBool()
+    local muting_enabled = GetConVar(con_vars.ENABLE_MUTER):GetBool()
 
     if not muting_enabled then
         logger.logDebug("Muting is Disabled")
