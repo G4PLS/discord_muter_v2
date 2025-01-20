@@ -30,7 +30,7 @@ CreateConVar(globals.con_vars.MUTE_ROUND, 1, {FCVAR_ARCHIVE, FCVAR_NOTIFY}, "Mut
 CreateConVar(globals.con_vars.MUTE_DURATION, 5, {FCVAR_ARCHIVE, FCVAR_NOTIFY}, "Sets how long, in seconds, you are muted for after death. No effect if mute_round is on. ", 1, 60)
 CreateConVar(globals.con_vars.AUTO_CONNECT, 0, {FCVAR_ARCHIVE, FCVAR_NOTIFY}, "Attempt to automatically match player name to discord name. This happens silently when the player connects. If it fails, it will prompt the user with the \"!discord NAME\" message.", 0, 1)
 
-include("game/muter_hooks.lua")
-include("game/muter_networking.lua")
+include("game_events/muter_hooks.lua")
+include("game_events/muter_networking.lua")
 
 AddCSLuaFile("globals.lua")
