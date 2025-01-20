@@ -18,5 +18,5 @@ net.Receive(network.server.ADD_USER_DISCORD_ID, function(len, ply)
     print(ply:Nick())
     print(discord_id)
 
-    addConnectionID(ply, discord_Id)
+    addConnectionID(ply, discord_id)
 end)
