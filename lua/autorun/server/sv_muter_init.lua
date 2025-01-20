@@ -1,5 +1,5 @@
-include("globals/sh_globals.lua")
-include("globals/sv_globals.lua")
+include("muter_globals/sh_globals.lua")
+include("muter_globals/sv_globals.lua")
 
 -- Add Network Strings
 for key, value in pairs(network.server) do
@@ -31,10 +31,10 @@ CreateConVar(con_vars.ENABLE_MUTER, 1, {FCVAR_ARCHIVE, FCVAR_NOTIFY}, "Sets the 
 CreateConVar(con_vars.MUTE_DURATION, 5, {FCVAR_ARCHIVE, FCVAR_NOTIFY}, "Sets how long, in seconds, you are muted for after death. No effect if mute_round is on. ", 1, 60)
 CreateConVar(con_vars.AUTO_CONNECT, 0, {FCVAR_ARCHIVE, FCVAR_NOTIFY}, "Attempt to automatically match player name to discord name. This happens silently when the player connects. If it fails, it will prompt the user with the \"!discord NAME\" message.", 0, 1)
 
-local logger = include("utils/logger.lua")
-logger.logInfo("SERVER LOADED EVERYTHING CORRECTLY")
+--local logger = include("utils/logger.lua")
+--logger.logInfo("SERVER LOADED EVERYTHING CORRECTLY")
 
-include("hooks/sv_discord_muter_hooks.lua")
+--include("hooks/sv_discord_muter_hooks.lua")
 --include("network/sv_discord_muter_network.lua")
 
 --AddCSLuaFile("globals/cl_globals.lua")

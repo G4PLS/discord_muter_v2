@@ -14,6 +14,7 @@ con_vars = {
 
 -- TODO: Add network string for muter dart
 network = {
+    -- Server Receiving
     server = {
         DEBUG = "net_sv_muter_debug",
         LOG_TIME = "net_sv_muter_log_time",
@@ -25,5 +26,6 @@ network = {
         MUTE_DURATION = "net_sv_muter_mute_duration",
         AUTO_CONNECT = "net_sv_muter_auto_connect"
     },
+    -- Client Receiving
     client = {}
 }
