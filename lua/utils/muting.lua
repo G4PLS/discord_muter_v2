@@ -5,6 +5,16 @@ include("network/http.lua")
 
 local logger = include("utils/logger.lua")
 
+function canMute()
+    local muting_enabled = GetconVar(con_vars.ENABLE_MUTER):GetBool()
+
+    if not muting_enabled then
+        logger.logDebug("Muting is Disabled")
+    end
+
+    return muting_enabled
+end
+
 function sendHttpRequest(ply, msg)
     if not containsConnectionID(ply) then
         logger.logError("Cant send http Request, id mappings dont contain player " .. tostring(ply:Nick()))
@@ -60,6 +70,8 @@ function getMuteStatus(ply)
 end
 
 function mutePlayer(ply)
+    if not canMute() then return end
+
     logger.logInfo("Muting Player")
 
     setMuteStatus(ply, true)
@@ -73,6 +85,8 @@ function mutePlayer(ply)
 end
 
 function unmutePlayer(ply)
+    if not canMute() then return end
+
     logger.logInfo("Unmuting Player")
 
     setMuteStatus(ply, false)
@@ -80,6 +94,8 @@ function unmutePlayer(ply)
 end
 
 function muteAll()
+    if not canMute() then return end
+
     logger.logInfo("Muting every Player")
     local players = player.GetAll()
 
@@ -89,6 +105,10 @@ function muteAll()
 end
 
 function unmuteAll()
+    if not canMute() then
+        return
+    end
+
     logger.logInfo("Unmuting every Player")
     local players = player.GetAll()
 

@@ -1,5 +1,7 @@
-include("utils/id_helper.lua")
 local logger = include("utils/logger.lua")
+include("utils/id_helper.lua")
+include("network/http.lua")
+include("muter_globals/sh_globals.lua")
 
 local ID_MAPPING_CACHE_PATH = "discord_connection_cache"
 
@@ -65,4 +67,29 @@ end
 
 function getIdMappingByPlayer(ply)
     return _G.id_mapping[playerIdToString(ply)]
+end
+
+function autoMapPlayer(ply)
+    if containsConnectionID(ply) then return end
+
+    if not GetConVar(con_vars.AUTO_CONNECT):GetBool() then
+        return
+    end
+
+    tag = ply:Name()
+    tag_utf8 = ""
+    for p, c in utf8.codes(tag) do
+        tag_utf8 = string.Trim(tag_utf8 .. " " .. c)
+    end
+
+    logger.logDebug("Trying to auto map player steam id to discord id")
+
+    httpFetch("connect", {
+        tag = tag_utf8
+    }, function(res)
+        if res.tag and res.id then
+            logger.logInfo(ply:Nick() .. " got bound to DiscordID: " .. tostring(res.id) .. " with Steam ID: " .. playerIdToString(ply))
+            addConnectionID(ply, res.id)
+        end
+    end)
 end

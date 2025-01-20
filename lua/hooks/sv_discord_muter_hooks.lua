@@ -1,5 +1,6 @@
 local logger = include("utils/logger.lua")
 include("utils/muting.lua")
+include("discord_integration/sv_id_mapper.lua")
 
 hook.Add("TTT2PrePrepareRound", "MuterPreBeginRound", function(duration)
     logger.logInfo("Round is Preparing")
@@ -23,5 +24,7 @@ end)
 
 hook.Add("PlayerInitialSpawn", "MuterPlayerInitialSpawn", function(ply ,transition)
     logger.logInfo("Initial Spawn of player: " .. ply:Nick())
+    autoMapPlayer(ply)
+
     unmutePlayer(ply)
 end)

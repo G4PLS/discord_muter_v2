@@ -8,6 +8,6 @@ end)
 
 concommand.Add("muter_list_vars", function(ply, cmd, args, argStr)
     for key, value in pairs(con_vars) do
-        logger.logDebug(tostring(key) .. ":" .. GetConVar(value):GetString())
+        logger.logDebug(tostring(value) .. ":" .. GetConVar(value):GetString())
     end
 end)
