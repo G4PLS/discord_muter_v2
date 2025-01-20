@@ -36,7 +36,7 @@ function writeConnectionIDs()
 
     local written_connections = file.Read(ID_MAPPING_CACHE_PATH .. ".json", "DATA")
     logger.logInfo(tostring(util.TableToJSON(_G.id_mapping, true)))
-    logger.logTable(written_connections, "Written Connections", "Printing Connections that got written to cache file")
+    logger.logInfo(written_connections)
 
     if written_connections == util.TableToJSON(_G.id_mapping, true) then
         logger.logInfo("Cache written!")
