@@ -15,8 +15,5 @@ end
 -- Receiving from Client
 net.Receive(network.server.ADD_USER_DISCORD_ID, function(len, ply)
     local discord_id = net.ReadString()
-    print(ply:Nick())
-    print(discord_id)
-
     addConnectionID(ply, discord_id)
 end)
