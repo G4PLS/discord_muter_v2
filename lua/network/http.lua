@@ -7,7 +7,8 @@ function httpFetch(req, params, callback, tries)
     httpsAdress = GetConVar(con_vars.BOT_ENDPOINT):GetString()
 
     http.Fetch(httpsAdress .. "/" .. req, function(res)
-        if util.JSONToTable(res).errorMsg then logger.logError(util.JSONToTable(res).errorMessage) end
+        if util.JSONToTable(res).errorMsg then 
+            logger.logError("Error while fetching " .. tostring(util.JSONToTable(res).errorMessage)) end
         callback(util.JSONToTable(res))
     end, function(err)
         logger.logError("Request to bot failed! Is the bot running?")
