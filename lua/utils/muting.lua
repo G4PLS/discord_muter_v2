@@ -1,15 +1,17 @@
+include("globals/sh_globals.lua")
+include("globals/sv_globals.lua")
+
 local logger = include("utils/logger.lua")
-local globals = include("globals.lua")
 
 function sendHttpRequest(ply, msg)
-    if not globals.idMappingContainsPlayer(ply) then
+    if not idMappingContainsPlayer(ply) then
         logger.logError("Cant send http Request, id mappings dont contain player " .. tostring(ply:Nick()))
         return
     end
 
     httpFetch("mute", {
         mute = getMuteStatus(ply),
-        id = globals.id_mapping[ply:SteamID64()]
+        id = id_mapping[ply:SteamID64()]
     }, function(response)
         if not getLogStatus() then
             return
@@ -39,7 +41,7 @@ function setMuteStatus(ply, status)
         logger.logError("Wasnt able to set player Status")
     end
 
-    globals[tostring(ply:SteamID64())] = status
+    muted_players[tostring(ply:SteamID64())] = status
     logger.logInfo("Set Mute Status of " .. tostring(ply:Nick()) .. " to " .. tostring(status))
 end
 
@@ -49,7 +51,7 @@ function getMuteStatus(ply)
         return false
     end
 
-    status = globals[tostring(ply:SteamID64())]
+    status = muted_players[tostring(ply:SteamID64())]
 
     if status == nil then
         status = false
@@ -66,12 +68,10 @@ function mutePlayer(ply)
     logger.logInfo("Muting Player")
 
     setMuteStatus(ply, true)
-    sendHttpRequest(ply, "Muting Player")
 
-    local mute_round = GetConVar(globals.con_vars.MUTE_ROUND)
+    local duration = GetConVar(con_vars.MUTE_DURATION):GetInt()
 
-    if not mute_round then
-        local duration = GetConVar(globals.con_vars.MUTE_DURATION)
+    if duration > 0 then
         time.Simple(duration, function() unmutePlayer(ply) end)
     end
 end

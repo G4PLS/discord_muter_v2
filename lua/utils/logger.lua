@@ -1,11 +1,12 @@
-local globals = include("globals.lua")
+include("globals/sh_globals.lua")
+include("globals/sv_globals.lua")
 
 logger = logger or {}
 
 logger.log_levels = logger.log_levels or {}
 
 logger.shouldLog = function()
-    local isDebuggingEnabled = GetConVar(globals.con_vars.DEBUG):GetBool()
+    local isDebuggingEnabled = GetConVar(con_vars.DEBUG):GetBool()
 
     if isDebuggingEnabled == nil then
         isDebuggingEnabled = false
@@ -15,7 +16,7 @@ logger.shouldLog = function()
 end
 
 logger.shouldLogTime = function()
-    local shouldLogTime = GetConVar(globals.con_vars.LOG_TIME):GetBool()
+    local shouldLogTime = GetConVar(con_vars.LOG_TIME):GetBool()
 
     if shouldLogTime == nil then
         shouldLogTime = false
@@ -26,13 +27,10 @@ end
 
 logger.setLogLevels = function(log_levels, delimiter)
     local result = {}
-    print("SETTING LOG LEVELS")
     for match in (log_levels .. delimiter):gmatch("(.-)" .. delimiter) do
         result[match] = true
-        print(tostring(match))
     end
     logger.log_levels = result
-    print(tostring(#logger.log_levels))
 end
 
 logger.containsLogLevel = function(log_level)

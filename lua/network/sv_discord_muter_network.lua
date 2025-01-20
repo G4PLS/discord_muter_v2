@@ -1,4 +1,6 @@
-local globals = include("globals.lua")
+include("globals/sh_globals.lua")
+include("globals/sv_globals.lua")
+
 local logger = include("utils/logger.lua")
 
 function isSuperAdmin(cmd, ply)

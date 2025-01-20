@@ -1,3 +1,5 @@
+include("globals/sh_globals.lua")
+
 concommand.Add(globals.con_vars.MUTE_ROUND,
 function(ply, cmd, args, argStr)
     local mute_round = args[1] == "1"
