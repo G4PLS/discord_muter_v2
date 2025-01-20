@@ -24,7 +24,8 @@ network = {
         SERVER_LINK = "net_sv_muter_server_link",
         ENABLE_MUTER = "net_sv_muter_enable_muter",
         MUTE_DURATION = "net_sv_muter_mute_duration",
-        AUTO_CONNECT = "net_sv_muter_auto_connect"
+        AUTO_CONNECT = "net_sv_muter_auto_connect",
+        ADD_USER_DISCORD_ID = "net_sv_muter_add_user_discord_id"
     },
     -- Client Receiving
     client = {}
