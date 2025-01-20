@@ -5,7 +5,7 @@ concommand.Add(globals.con_vars.DEBUG,
 function(ply, cmd, args, argStr)
     net.Start(globals.network.server.DEBUG)
     net.WriteBool(args[0])
-    net.Send()
+    net.SendToServer()
 end,
 function(cmd, argStr, args)
     return {
