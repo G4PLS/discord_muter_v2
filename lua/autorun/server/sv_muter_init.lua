@@ -33,10 +33,7 @@ CreateConVar(con_vars.AUTO_CONNECT, 0, {FCVAR_ARCHIVE, FCVAR_NOTIFY}, "Attempt t
 
 local logger = include("utils/logger.lua")
 
-print("DISCORD SERVER")
-print(GetConVar(con_vars.LOG_LEVELS):GetString())
-
-logger.setLogLevels(GetConVar(con_vars.LOG_LEVELS):GetString())
+logger.setLogLevels(GetConVar(con_vars.LOG_LEVELS):GetString(), '|')
 logger.logInfo("SERVER LOADED EVERYTHING CORRECTLY")
 
 --include("hooks/sv_discord_muter_hooks.lua")
