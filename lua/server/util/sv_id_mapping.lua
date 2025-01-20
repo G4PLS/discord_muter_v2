@@ -96,8 +96,8 @@ function autoMapPlayer(ply)
         tag = ply:Nick()
     }, function(response)
         if response.tag and response.id then
-            addConnectionID(ply, res.id)
-            logInfo("Player " .. ply:Nick() .. " with id " .. playerIdToString(ply) .. " got bound to discord id " .. res.id)
+            addConnectionID(ply, response.id)
+            logInfo("Player " .. ply:Nick() .. " with id " .. playerIdToString(ply) .. " got bound to discord id " .. response.id)
         end
     end)
 end
