@@ -87,6 +87,10 @@ function autoMapPlayer(ply)
     httpFetch("connect", {
         tag = tag_utf8
     }, function(res)
+        logger.logInfo("######################")
+        logger.logInfo(res.tag)
+        logger.logInfo(res.id)
+        logger.logInfo("######################")
         if res.tag and res.id then
             logger.logInfo(ply:Nick() .. " got bound to DiscordID: " .. tostring(res.id) .. " with Steam ID: " .. playerIdToString(ply))
             addConnectionID(ply, res.id)
