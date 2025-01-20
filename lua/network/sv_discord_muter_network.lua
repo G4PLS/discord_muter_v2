@@ -20,7 +20,7 @@ end)
 
 net.Receive(network.server.REMOVE_USER_DISCORD_ID,function(len, ply)
     logger.logInfo("Received " .. network.server.REMOVE_USER_DISCORD_ID)
-    if isSuperAdmin(ply) then
+    if isSuperAdmin(network.server.REMOVE_USER_DISCORD_ID, ply) then
         logger.logInfo("Removing " .. ply:Nick())
         removeConnectionID(ply)
     end
@@ -28,7 +28,7 @@ end)
 
 net.Receive(network.server.CLEAR_USER_DISCORD_ID, function(len, ply)
     logger.logInfo("Received " .. network.server.CLEAR_USER_DISCORD_ID)
-    if isSuperAdmin(ply) then
+    if isSuperAdmin(network.server.CLEAR_USER_DISCORD_ID, ply) then
         logger.logInfo("Clearing Connection IDs")
         clearConnectionIDs()
     end

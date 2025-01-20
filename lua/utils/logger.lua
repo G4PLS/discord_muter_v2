@@ -74,7 +74,7 @@ logger.logError = function(...)
 end
 
 logger.logTable = function(tbl, table_name, msg)
-    logger.Info(msg .. " | Printing Table: " .. table_name)
+    logger.logInfo(msg .. " | Printing Table: " .. table_name)
     PrintTable(tbl)
 end
 
