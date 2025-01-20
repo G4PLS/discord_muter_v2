@@ -36,8 +36,8 @@ logger.setLogLevels(GetConVar(con_vars.LOG_LEVELS):GetString(), '|')
 logger.logInfo("SERVER LOADED EVERYTHING CORRECTLY")
 
 include("hooks/sv_discord_muter_hooks.lua")
---include("network/sv_discord_muter_network.lua")
+include("network/sv_discord_muter_network.lua")
 
---AddCSLuaFile("globals/cl_globals.lua")
---AddCSLuaFile("globals/sh_globals.lua")
---AddCSLuaFile("commands/cl_muter_commands.lua")
+AddCSLuaFile("globals/cl_globals.lua")
+AddCSLuaFile("globals/sh_globals.lua")
+AddCSLuaFile("commands/cl_muter_commands.lua")
