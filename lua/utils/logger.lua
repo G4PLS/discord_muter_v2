@@ -1,5 +1,5 @@
-include("globals/sh_globals.lua")
-include("globals/sv_globals.lua")
+include("muter_globals/sh_globals.lua")
+include("muter_globals/sv_globals.lua")
 
 logger = logger or {}
 
