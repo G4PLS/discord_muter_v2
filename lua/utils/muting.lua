@@ -1,4 +1,4 @@
-include("utils/logging.lua")
+local logger = include("utils/logger.lua")
 local globals = include("globals.lua")
 
 function sendHttpRequest(ply, msg)
@@ -16,9 +16,9 @@ function sendHttpRequest(ply, msg)
         end
 
         if response and response.success then
-            logInfo("Http Response was OK, player mute state should be changed in discord")
+            logger.logInfo("Http Response was OK, player mute state should be changed in discord")
         else
-            logError("Http Response was NOT OK, player mute state probably didnt get changed")
+            logger.logError("Http Response was NOT OK, player mute state probably didnt get changed")
         end
     end)
 end
@@ -29,23 +29,23 @@ function checkValidPlayer(ply)
     end
 
     if getLogStatus() then
-        logError("Player is not Valid!")
+        logger.logError("Player is not Valid!")
         return false
     end
 end
 
 function setMuteStatus(ply, status)
     if not checkValidPlayer(ply) then
-        logError("Wasnt able to set player Status")
+        logger.logError("Wasnt able to set player Status")
     end
 
     globals[tostring(ply:SteamID64())] = status
-    logInfo("Set Mute Status of " .. tostring(ply:Nick()) .. " to " .. tostring(status))
+    logger.logInfo("Set Mute Status of " .. tostring(ply:Nick()) .. " to " .. tostring(status))
 end
 
 function getMuteStatus(ply)
     if not checkValidPlayer(ply) then
-        logError("Wasnt able to get mute status for player, returning false")
+        logger.logError("Wasnt able to get mute status for player, returning false")
         return false
     end
 
@@ -56,14 +56,14 @@ function getMuteStatus(ply)
     end
 
     if getLogStatus() then
-        logDebug("Mute status of " .. tostring(ply:Nick()) .. " is: " .. tostring(status))
+        logger.logDebug("Mute status of " .. tostring(ply:Nick()) .. " is: " .. tostring(status))
     end
 
     return status
 end
 
 function mutePlayer(ply)
-    logInfo("Muting Player")
+    logger.logInfo("Muting Player")
 
     setMuteStatus(ply, true)
     sendHttpRequest(ply, "Muting Player")
@@ -77,14 +77,14 @@ function mutePlayer(ply)
 end
 
 function unmutePlayer(ply)
-    logInfo("Unmuting Player")
+    logger.logInfo("Unmuting Player")
 
     setMuteStatus(ply, false)
     sendHttpRequest(ply, "Muting Player")
 end
 
 function muteAll()
-    logInfo("Muting every Player")
+    logger.logInfo("Muting every Player")
     local players = player.GetAll()
 
     for _, ply in ipairs(players) do
@@ -93,7 +93,7 @@ function muteAll()
 end
 
 function unmuteAll()
-    logInfo("Unmuting every Player")
+    logger.logInfo("Unmuting every Player")
     local players = player.GetAll()
 
     for _, ply in ipairs(players) do

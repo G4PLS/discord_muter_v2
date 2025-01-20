@@ -46,7 +46,7 @@ logger.print = function(log_level, msg)
 
     if not logger.shouldLog() then return end
 
-    log_message = string.format("[discord_muter_v2] %s: %s", log_level, msg)
+    log_message = string.format("[discord_muter_v2 %s]: %s", log_level, msg)
 
     if logger.shouldLogTime() then
         local current_time = os.date("%Y-%m-%d %H:%M:%S")

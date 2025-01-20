@@ -24,6 +24,5 @@ CreateConVar(globals.con_vars.AUTO_CONNECT, 0, {FCVAR_ARCHIVE, FCVAR_NOTIFY}, "A
 
 local logger = include("utils/logger.lua")
 logger.setLogLevels(GetConVar(globals.con_vars.LOG_LEVELS):GetString(), "|")
-logger.logInfo("DEMO INFO PRINT")
 
 include("hooks/discord_hooks.lua")
