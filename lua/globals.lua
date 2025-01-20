@@ -1,14 +1,6 @@
+include("discord_integration/sv_id_mapper.lua")
+
 globals = {
-    con_vars = {
-        DEBUG = "discord_muter_debug",
-        ENDPOINT = "discord_muter_endpoint",
-        API_KEY = "discord_muter_api_key",
-        DISCORD_NAME = "discord_muter_name",
-        SERVER_LINK = "discord_muter_server_link",
-        MUTE_ROUND = "discord_muter_muter_round",
-        MUTE_DURATION = "discord_muter_mute_duration",
-        AUTO_CONNECT = "discord_muter_auto_connect"
-    },
     network_strings = {
         DRAW_MUTE = "drawMute",
         CONNECT_DISCORD_ID = "connectDiscordID",
@@ -20,7 +12,7 @@ globals = {
         REQUEST_ADDON_VERSION = "request_addonVersion",
         BOT_VERSION = "botVersion",
         REQUEST_BOT_VERSION = "request_botVersion"
-    }
+    },
 }
 
 return globals
