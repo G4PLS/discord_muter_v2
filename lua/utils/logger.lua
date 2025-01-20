@@ -1,6 +1,8 @@
 local globals = include("globals.lua")
 
-logger = {}
+logger = {
+    log_levels = {}
+}
 
 logger.shouldLog = function()
     local isDebuggingEnabled = GetConVar(globals.con_vars.DEBUG):GetBool()
@@ -33,6 +35,10 @@ logger.setLogLevels = function(log_levels, delimiter)
 end
 
 logger.containsLogLevel = function(log_level)
+    if logger.log_levels == nil then
+        return false
+    end
+
     return logger.log_levels[log_level] ~= nil
 end
 
@@ -71,5 +77,11 @@ end
 logger.logError = function(...)
     logger.print("ERROR", ...)
 end
+
+print("DISCORD SETTING LOG LEVELS BOTTOM LOGGER.LUA")
+logger.setLogLevels(GetConVar(globals.con_vars.LOG_LEVELS):GetString(), "|")
+print("SET LOG LEVELS")
+print(tostring(#logger.log_levels))
+print("######################")
 
 return logger
