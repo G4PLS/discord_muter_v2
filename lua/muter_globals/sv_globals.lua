@@ -8,6 +8,9 @@ function idMappingContainsPlayer(ply)
     local player_id = playerIdToString(ply)
     local id = id_mapping[player_id]
 
+    print("CONTAINS MAPPING")
+    PrintTable(id_mapping)
+
     if id == nil then
         return false
     else

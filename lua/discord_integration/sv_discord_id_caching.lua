@@ -23,6 +23,10 @@ function getConnectionIDs()
     else
         logger.logError("ConnectionID cache failure")
     end
+
+    print("DISCORD GETTING CONNECTION IDS")
+    PrintTable(connections)
+
     return connections
 end
 
@@ -38,10 +42,13 @@ function writeConnectionIDs(connections)
 end
 
 function addConnectionID(ply, discordID)
+    print("DISCORD ADDING CONNECTION")
     --logger.logInfo("Adding " .. ply:Nick() .. " to ids, with id: " .. discordID)
     local player_id = playerIdToString(ply)
     connections[player_id] = discordID
     writeConnectionIDs(connections)
+
+    PrintTable(connection)
 end
 
 function removeConnectionID(ply)
