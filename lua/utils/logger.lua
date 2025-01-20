@@ -40,7 +40,7 @@ logger.containsLogLevel = function(log_level)
     end
 
     print("DISCORD CONTAINS LOG LEVEL")
-    PrintTbale(logger.log_levels)
+    PrintTable(logger.log_levels)
     print(tostring(logger.log_levels[log_level] ~= nil))
 
     return logger.log_levels[log_level] ~= nil
