@@ -1,4 +1,3 @@
-include("muter_globals/sh_globals.lua")
 include("sh_globals.lua")
 
 -- 460863943628554260

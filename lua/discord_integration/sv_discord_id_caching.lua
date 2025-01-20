@@ -37,7 +37,15 @@ function writeConnectionIDs(connections)
 end
 
 function addConnectionID(ply, discordID)
-    logger.logInfo("Adding " .. ply:Nick() .. " to ids, with id: " .. discordID)
+    logger.logInfo("ADDING ID")
+    logger.logInfo(ply:Nick())
+    print(discordID)
+
+    if discordID == nil then
+        return
+    end
+
+    --logger.logInfo("Adding " .. ply:Nick() .. " to ids, with id: " .. discordID)
     connections[ply:SteamID64()] = discordID
     writeConnectionIDs(connections)
 
