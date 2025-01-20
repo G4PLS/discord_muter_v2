@@ -4,6 +4,10 @@ muted_players = {} -- (str, bool) | SteamID - Mute Status
 id_mapping = getConnectionIDs() or {} -- (str, str) | SteamID - DiscordID
 
 function playerIdToString(ply)
+    if not IsValid(ply) then
+        return ""
+    end
+
     return tostring(ply:SteamID64())
 end
 
