@@ -2,6 +2,7 @@ globals = {
     con_vars = {
         DEBUG = "discord_muter_debug",
         LOG_TIME = "discord_muter_log_time",
+        LOG_LEVELS = "discord_muter_log_levels",
         ENDPOINT = "discord_muter_endpoint",
         API_KEY = "discord_muter_api_key",
         DISCORD_NAME = "discord_muter_name",
