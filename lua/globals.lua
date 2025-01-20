@@ -1,3 +1,5 @@
+include("discord_integration/sv_discord_id_caching.lua")
+
 globals = {
     con_vars = {
         DEBUG = "discord_muter_debug",
@@ -26,19 +28,19 @@ globals = {
     network = {
         -- Net Recieve Server
         server = {
-            DEBUG = "net_sv_muter_debug",
-            LOG_TIME = "net_sv_muter_log_time",
-            LOG_LEVELS = "net_sv_muter_log_levels",
-            MUTE_ROUND = "net_sv_muter_mute_round",
-            MUTE_DURATION = "net_sv_muter_mute_duration",
-            AUTO_CONNECT = "net_sv_muter_auto_connect"
+            DEBUG = "net_sv_muter_debug", -- Server
+            LOG_TIME = "net_sv_muter_log_time", -- Server
+            LOG_LEVELS = "net_sv_muter_log_levels", -- Server
+            MUTE_ROUND = "net_sv_muter_mute_round", -- Server/Client
+            MUTE_DURATION = "net_sv_muter_mute_duration", -- Server/Client
+            AUTO_CONNECT = "net_sv_muter_auto_connect" -- Server/Client
         },
         -- Net Recieve Client
         client = {
         }
     },
     muted_players = {}, -- (str, bool) | SteamID - Mute Status
-    id_mapping = {}, -- (str, str) | SteamID - DiscordID
+    id_mapping = getConnectionIDs(), -- (str, str) | SteamID - DiscordID
 }
 
 globals.idMappingContainsPlayer = function(ply)

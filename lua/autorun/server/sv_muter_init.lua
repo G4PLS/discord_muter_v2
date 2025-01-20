@@ -34,3 +34,4 @@ include("hooks/sv_discord_muter_hooks.lua")
 include("network/sv_discord_muter_network.lua")
 
 AddCSLuaFile("globals.lua")
+AddCSLuaFile("commands/cl_muter_commands.lua")
