@@ -37,8 +37,11 @@ function writeConnectionIDs(connections)
 end
 
 function addConnectionID(ply, discordID)
+    logger.logInfo("Adding " .. ply:Nick() .. " to ids, with id: " .. discordID)
     connections[ply:SteamID64()] = discordID
     writeConnectionIDs(connections)
+
+    PrintTable(connections)
 end
 
 function removeConnectionID(ply)
