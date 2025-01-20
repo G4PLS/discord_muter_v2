@@ -1,23 +1,17 @@
-include("muter_globals/sh_globals.lua")
-include("utils/id_helper.lua")
-include("discord_integration/sv_id_mapper.lua")
-include("network/http.lua")
+include("shared/globals/sh_globals.lua")
+include("server/util/sv_id_mapping.lua")
+include("server/discord/sv_discord_requests.lua")
+include("shared/logging/sh_logger.lua")
 
-local logger = include("utils/logger.lua")
+--local logger = include("utils/logger.lua")
 
 function canMute()
-    local muting_enabled = GetConVar(con_vars.ENABLE_MUTER):GetBool()
-
-    if not muting_enabled then
-        logger.logDebug("Muting is Disabled")
-    end
-
-    return muting_enabled
+    return GetConVar(con_vars.ENABLE_MUTER):GetBool() or false
 end
 
 function sendHttpRequest(ply, msg)
     if not containsConnectionID(ply) then
-        logger.logError("Cant send http Request, id mappings dont contain player " .. tostring(ply:Nick()))
+        --logger.logError("Cant send http Request, id mappings dont contain player " .. tostring(ply:Nick()))
         return
     end
 
@@ -26,45 +20,49 @@ function sendHttpRequest(ply, msg)
         id = getIdMappingByPlayer(ply)
     }, function(response)
         if response and response.success then
-            logger.logInfo("Http Response was OK, " .. ply:Nick() .. " mute state should be changed in discord")
+            --logger.logInfo("Http Response was OK, " .. ply:Nick() .. " mute state should be changed in discord")
         else
-            logger.logError("Http Response was NOT OK, " .. ply:Nick() .. " mute state probably didnt get changed")
+            --logger.logError("Http Response was NOT OK, " .. ply:Nick() .. " mute state probably didnt get changed")
         end
     end)
 end
 
 function checkValidPlayer(ply)
-    if IsValid(ply) then
-        return true
+    logInfo("Checking if player is valid before muting")
+
+    local player_valid = IsValid(ply)
+
+    if player_valid == false then
+        logError("Player is not valid")
     end
 
-    logger.logError("Player is not Valid!")
-    return false
+    return player_valid
 end
 
 function setMuteStatus(ply, status)
     if not checkValidPlayer(ply) then
-        logger.logError("Wasnt able to set player Status")
+        return
     end
 
-    _G.muted_players[playerIdToString(ply)] = status
+    logInfo("Setting mute status for player " .. ply:Nick() .. " to " .. tostring(status))
 
-    logger.logInfo("Set Mute Status of " .. tostring(ply:Nick()) .. " to " .. tostring(status))
+    _G.muted_players[playerIdToString(ply)] = status
 end
 
 function getMuteStatus(ply)
+    logInfo("Getting mute status for player")
+
     if not checkValidPlayer(ply) then
-        logger.logError("Wasnt able to get mute status for player, returning false")
+        logError("Wasnt able to get mute status for player, returning false")
         return false
     end
 
     status = _G.muted_players[playerIdToString(ply)]
 
     if status == nil then
+        logError("Wasnt able to get mute status for player " .. ply:Nick())
         status = false
     end
-
-    logger.logDebug("Mute status of " .. tostring(ply:Nick()) .. " is: " .. tostring(status))
 
     return status
 end
@@ -72,7 +70,7 @@ end
 function mutePlayer(ply)
     if not canMute() then return end
 
-    logger.logInfo("Muting Player")
+    logInfo("Trying to mute Player " .. ply:Nick())
 
     setMuteStatus(ply, true)
     sendHttpRequest(ply, "Muting Player")
@@ -87,7 +85,7 @@ end
 function unmutePlayer(ply)
     if not canMute() then return end
 
-    logger.logInfo("Unmuting Player")
+    logInfo("Trying to unmute player " .. ply:Nick())
 
     setMuteStatus(ply, false)
     sendHttpRequest(ply, "Muting Player")
@@ -96,7 +94,8 @@ end
 function muteAll()
     if not canMute() then return end
 
-    logger.logInfo("Muting every Player")
+    logInfo("Trying to mute every Player")
+
     local players = player.GetAll()
 
     for _, ply in ipairs(players) do
@@ -105,11 +104,10 @@ function muteAll()
 end
 
 function unmuteAll()
-    if not canMute() then
-        return
-    end
+    if not canMute() then return end
 
-    logger.logInfo("Unmuting every Player")
+    logInfo("Trying to unmute every player")
+
     local players = player.GetAll()
 
     for _, ply in ipairs(players) do

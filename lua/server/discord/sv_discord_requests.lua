@@ -1,5 +1,5 @@
-local logger = include("utils/logger.lua")
-local globals = include("muter_globals/sh_globals.lua")
+include("shared/globals/sh_globals.lua")
+include("shared/logging/sh_logger.lua")
 
 function httpFetch(req, params, callback, tries)
     local default_tries = 3
