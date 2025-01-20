@@ -1,5 +1,4 @@
 include("muter_globals/sh_globals.lua")
-include("muter_globals/sv_globals.lua")
 include("utils/id_helper.lua")
 
 local logger = include("utils/logger.lua")
@@ -10,11 +9,9 @@ function sendHttpRequest(ply, msg)
         return
     end
 
-    local player_id = playerIdToString(ply)
-
     httpFetch("mute", {
         mute = getMuteStatus(ply),
-        id = id_mapping[player_id]
+        id = getIdMappingByPlayer(ply)
     }, function(response)
         if not getLogStatus() then
             return
@@ -44,9 +41,8 @@ function setMuteStatus(ply, status)
         logger.logError("Wasnt able to set player Status")
     end
 
-    local player_id = playerIdToString(ply)
+    _G.muted_players[playerIdToString(ply)] = status
 
-    muted_players[player_id] = status
     logger.logInfo("Set Mute Status of " .. tostring(ply:Nick()) .. " to " .. tostring(status))
 end
 
@@ -56,9 +52,7 @@ function getMuteStatus(ply)
         return false
     end
 
-    local player_id = playerIdToString(ply)
-
-    status = muted_players[player_id]
+    status = _G.muted_players[playerIdToString(ply)]
 
     if status == nil then
         status = false

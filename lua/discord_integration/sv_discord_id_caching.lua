@@ -1,40 +1,37 @@
 include("utils/id_helper.lua")
 local logger = include("utils/logger.lua")
 
-local CONNECTION_CACHE_PATH = "discord_connection_cache"
-local connections = {}
+local ID_MAPPING_CACHE_PATH = "discord_connection_cache"
 
 function backupConnectionIDs(connections)
     local timestamp = os.time()
     local time_string = os.date("%Y-%m-%d", timestamp)
-    local backup_file_name = CONNECTION_CACHE_PATH .. "_BACKUP_" .. time_string
+    local backup_file_name = ID_MAPPING_CACHE_PATH .. "_BACKUP_" .. time_string
 
     file.Write(backup_file_name .. ".json", util.TableToJSON(connections, true))
     logger.logInfo("Discord ConnectionIDs backed up to:" .. backup_file_name)
 end
 
-function getConnectionIDs()
-    local connection_cache = file.Read(CONNECTION_CACHE_PATH .. ".json", "DATA")
+function loadConnectionIDs()
+    local id_mapping_cache = file.Read(ID_MAPPING_CACHE_PATH .. ".json", "DATA")
     logger.logInfo("Attempting to collect from ConnectionID cache")
 
-    if connection_cache then
-        connections = util.JSONToTable(connection_cache)
+    if id_mapping_cache then
+        _G.id_mapping = util.JSONToTable(id_mapping_cache)
         logger.logInfo("ConnectionID cache collected")
     else
         logger.logError("ConnectionID cache failure")
     end
 
     print("DISCORD GETTING CONNECTION IDS")
-    PrintTable(connections)
-
-    return connections
+    PrintTable(_G.id_mapping)
 end
 
-function writeConnectionIDs(connections)
-    file.Write(CONNECTION_CACHE_PATH .. ".json", util.TableToJSON(connections, true))
+function writeConnectionIDs()
+    file.Write(ID_MAPPING_CACHE_PATH .. ".json", util.TableToJSON(_G.id_mapping, true))
 
-    local written_connections = file.Read(CONNECTION_CACHE_PATH .. ".json", "DATA")
-    if written_connections == util.TableToJSON(connections, true) then
+    local written_connections = file.Read(ID_MAPPING_CACHE_PATH .. ".json", "DATA")
+    if written_connections == util.TableToJSON(_G.id_mapping, true) then
         logger.logInfo("Cache written!")
     else
         logger.logError("Cache write failed!")
@@ -43,25 +40,25 @@ end
 
 function clearConnectionIDs()
     logger.logInfo("Clearing Connection IDs")
-    connections = {}
-    writeConnectionIDs(connections)
 
-    logger.logTable(connections, "ConnectionIDs", "Cleared Connections from Table")
+    _G.id_mapping = {}
+    writeConnectionIDs()
+
+    logger.logTable(_G.id_mapping, "ConnectionIDs", "Cleared Connections from Table")
 end
 
 function addConnectionID(ply, discordID)
     logger.logInfo("Adding " .. ply:Nick() .. " to ids, with id: " .. discordID)
-    local player_id = playerIdToString(ply)
-    connections[player_id] = discordID
-    writeConnectionIDs(connections)
 
-    logger.logTable(connections, "ConnectionIDs", "Added Player to Table")
+    _G.id_mapping[playerIdToString(ply)] = discordID
+    writeConnectionIDs()
+
+    logger.logTable(_G.id_mapping, "ConnectionIDs", "Added Player to Table")
 end
 
 function removeConnectionID(ply)
-    local player_id = playerIdToString(ply)
-    connections[player_id] = nil
-    writeConnectionIDs(connections)
+    _G.id_mapping[playerIdToString(ply)] = nil
+    writeConnectionIDs()
 
-    logger.logTable(connections, "ConnectionIDs", "Removed Player from Table")
+    logger.logTable(_G.id_mapping, "ConnectionIDs", "Removed Player from Table")
 end

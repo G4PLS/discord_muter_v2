@@ -1,5 +1,4 @@
 include("muter_globals/sh_globals.lua")
-include("muter_globals/sv_globals.lua")
 include("discord_integration/sv_discord_id_caching.lua")
 
 local logger = include("utils/logger.lua")
