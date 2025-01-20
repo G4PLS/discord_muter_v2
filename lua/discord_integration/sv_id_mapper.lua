@@ -61,9 +61,9 @@ function removeConnectionID(ply)
 end
 
 function containsConnectionID(ply)
-    return _G.mapping[playerIdToString(ply)] ~= nil
+    return _G.id_mapping[playerIdToString(ply)] ~= nil
 end
 
 function getIdMappingByPlayer(ply)
-    return _G.mapping[playerIdToString(ply)]
+    return _G.id_mapping[playerIdToString(ply)]
 end
