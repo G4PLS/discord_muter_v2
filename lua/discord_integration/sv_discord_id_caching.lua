@@ -18,9 +18,9 @@ function getConnectionIDs()
 
     if connection_cache then
         connections = util.JSONToTable(connection_cache)
-        log.info("ConnectionID cache collected")
+        logger.info("ConnectionID cache collected")
     else
-        log.error("ConnectionID cache failure")
+        logger.error("ConnectionID cache failure")
     end
 end
 
