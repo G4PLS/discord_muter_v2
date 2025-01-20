@@ -9,9 +9,11 @@ function sendHttpRequest(ply, msg)
         return
     end
 
+    local player_id = playerIdToString(ply)
+
     httpFetch("mute", {
         mute = getMuteStatus(ply),
-        id = id_mapping[ply:SteamID64()]
+        id = id_mapping[player_id]
     }, function(response)
         if not getLogStatus() then
             return
@@ -41,7 +43,9 @@ function setMuteStatus(ply, status)
         logger.logError("Wasnt able to set player Status")
     end
 
-    muted_players[tostring(ply:SteamID64())] = status
+    local player_id = playerIdToString(ply)
+
+    muted_players[player_id] = status
     logger.logInfo("Set Mute Status of " .. tostring(ply:Nick()) .. " to " .. tostring(status))
 end
 
@@ -51,7 +55,9 @@ function getMuteStatus(ply)
         return false
     end
 
-    status = muted_players[tostring(ply:SteamID64())]
+    local player_id = playerIdToString(ply)
+
+    status = muted_players[player_id]
 
     if status == nil then
         status = false

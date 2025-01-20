@@ -1,4 +1,5 @@
 local logger = include("utils/logger.lua")
+include("muter_globals/sv_globals.lua")
 
 local CONNECTION_CACHE_PATH = "discord_connection_cache"
 local connections = {}
@@ -38,11 +39,13 @@ end
 
 function addConnectionID(ply, discordID)
     --logger.logInfo("Adding " .. ply:Nick() .. " to ids, with id: " .. discordID)
-    connections[ply:SteamID64()] = discordID
+    local player_id = playerIdToString(ply)
+    connections[player_id] = discordID
     writeConnectionIDs(connections)
 end
 
 function removeConnectionID(ply)
-    connections[ply:SteamID64()] = nil
+    local player_id = playerIdToString(ply)
+    connections[player_id] = nil
     writeConnectionIDs(connections)
 end

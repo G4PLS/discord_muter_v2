@@ -3,14 +3,13 @@ include("discord_integration/sv_discord_id_caching.lua")
 muted_players = {} -- (str, bool) | SteamID - Mute Status
 id_mapping = getConnectionIDs() or {} -- (str, str) | SteamID - DiscordID
 
-function idMappingContainsPlayer(ply)
-    print("DISCORD ID MAPPING CONTAINS")
-    PrintTable(id_mapping)
-    print(ply:Nick())
-    print(ply:SteamID64())
-    print("#########################")
+function playerIdToString(ply)
+    return tostring(ply:SteamID64())
+end
 
-    local id = id_mapping[ply:SteamID64()]
+function idMappingContainsPlayer(ply)
+    local player_id = playerIdToString(ply)
+    local id = id_mapping[player_id]
 
     if id == nil then
         return false
