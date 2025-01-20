@@ -72,7 +72,7 @@ function mutePlayer(ply)
     local duration = GetConVar(con_vars.MUTE_DURATION):GetInt()
 
     if duration > 0 then
-        time.Simple(duration, function() unmutePlayer(ply) end)
+        timer.Simple(duration, function() unmutePlayer(ply) end)
     end
 end
 
