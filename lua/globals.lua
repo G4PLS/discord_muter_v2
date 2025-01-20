@@ -23,6 +23,20 @@ globals = {
         BOT_VERSION = "botVersion",
         REQUEST_BOT_VERSION = "request_botVersion"
     },
+    network = {
+        -- Net Recieve Server
+        server = {
+            DEBUG = "net_sv_muter_debug",
+            LOG_TIME = "net_sv_muter_log_time",
+            LOG_LEVELS = "net_sv_muter_log_levels",
+            MUTE_ROUND = "net_sv_muter_mute_round",
+            MUTE_DURATION = "net_sv_muter_mute_duration",
+            AUTO_CONNECT = "net_sv_muter_auto_connect"
+        },
+        -- Net Recieve Client
+        client = {
+        }
+    },
     muted_players = {}, -- (str, bool) | SteamID - Mute Status
     id_mapping = {}, -- (str, str) | SteamID - DiscordID
 }

@@ -1,6 +1,10 @@
-print("DISCORD LOADED SERVER")
-
 local globals = include("globals.lua")
+
+-- Add Network Strings
+for key, value in pairs(globals.network.server) do
+    util.AddNetworkString(value)
+end
+
 util.AddNetworkString(globals.network_strings.DRAW_MUTE)
 util.AddNetworkString(globals.network_strings.CONNECT_DISCORD_ID)
 util.AddNetworkString(globals.network_strings.PLAYER_TABLE)
@@ -12,14 +16,7 @@ util.AddNetworkString(globals.network_strings.REQUEST_ADDON_VERSION)
 util.AddNetworkString(globals.network_strings.BOT_VERSION)
 util.AddNetworkString(globals.network_strings.REQUEST_BOT_VERSION)
 
-util.AddNetworkString("ServerCMD")
-
-net.Receive("ServerCMD", function(len, ply)
-    print(ply:Nick())
-    print(len)
-    print(net.ReadString())
-    print("######")
-end)
+-- Create Con Vars for Server
 
 CreateConVar(globals.con_vars.DEBUG, 0, {FCVAR_ARCHIVE, FCVAR_NOTIFY}, "Print debug messages to the Console")
 CreateConVar(globals.con_vars.LOG_TIME, 1, {FCVAR_ARCHIVE, FCVAR_NOTIFY}, "Print the time when debugging")
@@ -35,8 +32,4 @@ CreateConVar(globals.con_vars.AUTO_CONNECT, 0, {FCVAR_ARCHIVE, FCVAR_NOTIFY}, "A
 
 include("hooks/discord_hooks.lua")
 
-concommand.Add( "servermand", function( ply, cmd, args, str )
-    print("SERVER")
-    print( ply:Nick(), cmd )
-    PrintTable( args )
- end )
+AddCSLuaFile("globals.lua")

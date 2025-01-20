@@ -1,7 +1,18 @@
-print("DISCORD LOADED CLIENT")
+local globals = include("globals.lua")
+-- Setup Client commands
 
-concommand.Add( "clientmand", function( ply, cmd, args, str )
-    net.Start("ServerCMD")
-    net.WriteString("THIS IS FROM clientmand")
-    net.SendToServer()
- end )
+concommand.Add(globals.con_vars.DEBUG, 
+function(ply, cmd, args, argStr)
+    print(ply:Nick())
+    print(cmd)
+    print(args)
+    print(argsStr)
+    --net.Start(globals.network.server.DEBUG)
+end,
+function(cmd, argStr, args) 
+    return {
+        cmd .. "1",
+        cmd .. "0"
+    }
+end,
+"Helping text for this")
