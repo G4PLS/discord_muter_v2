@@ -26,8 +26,10 @@ end
 
 logger.setLogLevels = function(log_levels, delimiter)
     local result = {}
+    print("DISCORD SETTING LEVELS")
     for match in (log_levels .. delimiter):gmatch("(.-)" .. delimiter) do
         result[match] = true
+        print(tostirng(match))
     end
     logger.log_levels = result
 end
@@ -36,6 +38,9 @@ logger.containsLogLevel = function(log_level)
     if logger.log_levels == nil then
         return false
     end
+
+    print("DISCORD CONTAINS LOG LEVEL")
+    print(tostring(logger.log_levels[log_level] ~= nil))
 
     return logger.log_levels[log_level] ~= nil
 end
@@ -58,6 +63,7 @@ logger.print = function(log_level, msg)
 end
 
 logger.logInfo = function(...)
+    print("DISCORD LOGGING INFO")
     logger.print("INFO", ...)
 end
 
