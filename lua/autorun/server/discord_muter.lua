@@ -26,8 +26,8 @@ CreateConVar(globals.con_vars.AUTO_CONNECT, 0, {FCVAR_ARCHIVE, FCVAR_NOTIFY}, "A
 
 include("hooks/discord_hooks.lua")
 
-concommand("commandname", function(ply, cmd, args, str)
+concommand.Add( "servermand", function( ply, cmd, args, str )
     print("SERVER")
-    print(ply:Nick(), cmd)
-    PrintTable(args)
-end)
+    print( ply:Nick(), cmd )
+    PrintTable( args )
+ end )
