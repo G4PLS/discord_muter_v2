@@ -1,5 +1,5 @@
 local logger = include("utils/logger.lua")
-local globals = include("globals.lua")
+local globals = include("shared/globals.lua")
 
 function sendHttpRequest(ply, msg)
     if not globals.idMappingContainsPlayer(ply) then

@@ -1,4 +1,4 @@
-local globals = include("globals.lua")
+local globals = include("shared/globals.lua")
 -- Setup Client commands
 
 concommand.Add(globals.con_vars.DEBUG,

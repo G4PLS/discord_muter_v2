@@ -1,4 +1,4 @@
-local globals = include("globals.lua")
+local globals = include("shared/globals.lua")
 
 -- Add Network Strings
 for key, value in pairs(globals.network.server) do
@@ -33,4 +33,4 @@ CreateConVar(globals.con_vars.AUTO_CONNECT, 0, {FCVAR_ARCHIVE, FCVAR_NOTIFY}, "A
 include("game/muter_hooks.lua")
 include("game/muter_networking.lua")
 
-AddCSLuaFile("globals.lua")
+--AddCSLuaFile("globals.lua")
