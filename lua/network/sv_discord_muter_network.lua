@@ -5,7 +5,7 @@ include("discord_integration/sv_discord_id_caching.lua")
 local logger = include("utils/logger.lua")
 
 function isSuperAdmin(cmd, ply)
-    if not ply.IsSuperAdmin() then
+    if not ply:IsSuperAdmin() then
         logger.logWarning(tostring(ply:Nick()) .. " tried to send: " .. tostring(cmd))
         return false
     end
