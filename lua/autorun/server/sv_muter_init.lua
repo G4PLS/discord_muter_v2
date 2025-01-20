@@ -34,7 +34,7 @@ CreateConVar(con_vars.AUTO_CONNECT, 0, {FCVAR_ARCHIVE, FCVAR_NOTIFY}, "Attempt t
 local logger = include("utils/logger.lua")
 logger.logInfo("SERVER LOADED EVERYTHING CORRECTLY")
 
---include("hooks/sv_discord_muter_hooks.lua")
+include("hooks/sv_discord_muter_hooks.lua")
 --include("network/sv_discord_muter_network.lua")
 
 --AddCSLuaFile("globals/cl_globals.lua")
