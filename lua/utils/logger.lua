@@ -1,8 +1,8 @@
 local globals = include("globals.lua")
 
-logger = {
-    log_levels = {}
-}
+logger = logger or {}
+
+logger.log_levels = logger.log_levels or {}
 
 logger.shouldLog = function()
     local isDebuggingEnabled = GetConVar(globals.con_vars.DEBUG):GetBool()
@@ -32,6 +32,7 @@ logger.setLogLevels = function(log_levels, delimiter)
         print(tostring(match))
     end
     logger.log_levels = result
+    print(tostring(#logger.log_levels))
 end
 
 logger.containsLogLevel = function(log_level)
