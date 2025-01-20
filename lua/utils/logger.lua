@@ -39,10 +39,6 @@ logger.containsLogLevel = function(log_level)
         return false
     end
 
-    print("DISCORD CONTAINS LOG LEVEL")
-    PrintTable(logger.log_levels)
-    print(tostring(logger.log_levels[log_level] ~= nil))
-
     return logger.log_levels[log_level] ~= nil
 end
 
@@ -79,5 +75,7 @@ end
 logger.logError = function(...)
     logger.print("ERROR", ...)
 end
+
+logger.setLogLevels(GetConVar(con_vars.LOG_LEVELS):GetString(), '|')
 
 return logger
