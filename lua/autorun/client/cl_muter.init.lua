@@ -6,13 +6,15 @@ function(ply, cmd, args, argStr)
     print(ply:Nick())
     print(cmd)
     print(args)
+    PrintTable(args)
     print(argsStr)
     --net.Start(globals.network.server.DEBUG)
 end,
 function(cmd, argStr, args) 
     return {
-        cmd .. "1",
-        cmd .. "0"
+        cmd .. " 1",
+        cmd .. " 0"
     }
 end,
+
 "Helping text for this")
