@@ -79,10 +79,4 @@ logger.logError = function(...)
     logger.print("ERROR", ...)
 end
 
-print("DISCORD SETTING LOG LEVELS BOTTOM LOGGER.LUA")
-logger.setLogLevels(GetConVar(globals.con_vars.LOG_LEVELS):GetString(), "|")
-print("SET LOG LEVELS")
-print(tostring(#logger.log_levels))
-print("######################")
-
 return logger
