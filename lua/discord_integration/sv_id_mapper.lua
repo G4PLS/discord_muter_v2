@@ -88,6 +88,7 @@ function autoMapPlayer(ply)
         tag = tag_utf8
     }, function(res)
         logger.logInfo("######################")
+        logger.logInfo(res)
         logger.logInfo(res.tag)
         logger.logInfo(res.id)
         logger.logInfo("######################")
