@@ -16,15 +16,16 @@ con_vars = {
 network = {
     -- Server Receiving
     server = {
-        DEBUG = "net_sv_muter_debug",
-        LOG_TIME = "net_sv_muter_log_time",
-        LOG_LEVELS = "net_sv_muter_log_levels",
-        BOT_ENDPOINT = "net_sv_muter_bot_endpoint",
-        BOT_API_KEY = "net_sv_muter_bot_api_key",
-        SERVER_LINK = "net_sv_muter_server_link",
-        ENABLE_MUTER = "net_sv_muter_enable_muter",
-        MUTE_DURATION = "net_sv_muter_mute_duration",
-        AUTO_CONNECT = "net_sv_muter_auto_connect",
+        SET_DEBUG = "net_sv_muter_debug",
+        SET_LOG_TIME = "net_sv_muter_log_time",
+        SET_LOG_LEVELS = "net_sv_muter_log_levels",
+        SET_BOT_ENDPOINT = "net_sv_muter_bot_endpoint",
+        SET_BOT_API_KEY = "net_sv_muter_bot_api_key",
+        SET_SERVER_LINK = "net_sv_muter_server_link",
+        SET_MUTER_ENABLED = "net_sv_muter_enable_muter",
+        SET_MUTE_DURATION = "net_sv_muter_mute_duration",
+        SET_AUTO_CONNECT = "net_sv_muter_auto_connect",
+
         ADD_USER_DISCORD_ID = "net_sv_muter_add_user_discord_id",
         REMOVE_USER_DISCORD_ID = "net_sv_muter_remove_user_discord_id",
         CLEAR_USER_DISCORD_ID = "net_sv_muter_clear_user_discord_id"

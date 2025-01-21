@@ -42,4 +42,5 @@ loadConnectionIDs()
 
 -- Send relevant files to client
 AddCSLuaFile("shared/globals/sh_globals.lua")
+AddCSLuaFile("client/globals/cl_globals.lua")
 AddCSLuaFile("client/commands/cl_commands.lua")
