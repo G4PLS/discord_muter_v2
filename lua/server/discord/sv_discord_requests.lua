@@ -4,6 +4,8 @@ include("shared/logging/sh_logger.lua")
 function discordRequest(req, params, callback, tries)
     local default_tries = 3
 
+    logInfo("Sending " .. req .. " Request to discord ")
+
     local bot_endpoint = GetConVar(con_vars.BOT_ENDPOINT):GetString()
     http.Fetch(bot_endpoint .. "/" .. req, function(response)
         local response_table = util.JSONToTable(response)
@@ -12,8 +14,7 @@ function discordRequest(req, params, callback, tries)
             logError("Error while fetching " .. tostring(response_table.errorMsg))
         end
     end, function(err)
-        logError("Request to bot failed! Is the bot running?")
-        logError(err)
+        logError("Request to discord bot failed! Is the bot running?" .. tostring(err))
 
         if not tries then
             tries = default_tries

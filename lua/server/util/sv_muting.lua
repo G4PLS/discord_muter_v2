@@ -1,30 +1,10 @@
 include("shared/globals/sh_globals.lua")
 include("server/util/sv_id_mapping.lua")
+include("server/util/sv_general.lua")
 include("server/discord/sv_discord_requests.lua")
 include("shared/logging/sh_logger.lua")
 
---local logger = include("utils/logger.lua")
-
--- 1=Waiting | 2=Prep | 3=Active | 4=Post
-function getRoundState()
-    if gmod.GetGamemode().Name == "TTT2" or gmod.GetGamemode().Name == "TTT2 (Advanced Update)" then
-        return GetRoundState()
-    end
-
-    return nil
-end
-
-function isRoundRunning()
-    return getRoundState() == 3
-end
-
-function canMute()
-    return GetConVar(con_vars.ENABLE_MUTER):GetBool() or false
-end
-
 function discordMute(ply)
-    logInfo("Trying to send mute request to discord")
-
     discordRequest("mute", {
         mute = getMuteStatus(ply),
         id = getIdMappingByPlayer(ply)
@@ -38,9 +18,7 @@ function discordMute(ply)
 end
 
 function checkValidPlayer(ply)
-    logInfo("Checking if player is valid before muting")
-
-    local player_valid = IsValid(ply)
+    local player_valid = IsValid(ply) or not ply:IsBot()
 
     if player_valid == false then
         logError("Player is not valid")
@@ -53,15 +31,11 @@ function setMuteStatus(ply, status)
     if not checkValidPlayer(ply) then
         return
     end
-
-    logInfo("Setting mute status for player " .. ply:Nick() .. " to " .. tostring(status))
-
+    logDebug("Set mute status for player " .. ply:Nick() .. " to " .. tostring(status))
     _G.muted_players[playerIdToString(ply)] = status
 end
 
 function getMuteStatus(ply)
-    logInfo("Getting mute status for player")
-
     if not checkValidPlayer(ply) then
         logError("Wasnt able to get mute status for player, returning false")
         return false
@@ -78,9 +52,9 @@ function getMuteStatus(ply)
 end
 
 function mutePlayer(ply)
-    if not canMute() and not isRoundRunning() or ply:IsBot() then return end
+    if isRoundRunning() or ply:IsBot() then return end
 
-    logInfo("Trying to mute Player " .. ply:Nick())
+    logInfo("Muting player " .. ply:Nick())
 
     setMuteStatus(ply, true)
     discordMute(ply)
@@ -93,19 +67,14 @@ function mutePlayer(ply)
 end
 
 function unmutePlayer(ply)
-    if not canMute() or ply:IsBot() then return end
-
-    logInfo("Trying to unmute player " .. ply:Nick())
+    if ply:IsBot() then return end
+    logInfo("Unmuting player " .. ply:Nick())
 
     setMuteStatus(ply, false)
     discordMute(ply)
 end
 
 function muteAll()
-    if not canMute() then return end
-
-    logInfo("Trying to mute every Player")
-
     local players = player.GetAll()
 
     for _, ply in ipairs(players) do
@@ -114,10 +83,6 @@ function muteAll()
 end
 
 function unmuteAll()
-    if not canMute() then return end
-
-    logInfo("Trying to unmute every player")
-
     local players = player.GetAll()
 
     for _, ply in ipairs(players) do

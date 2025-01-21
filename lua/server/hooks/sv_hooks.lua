@@ -1,30 +1,36 @@
 include("server/util/sv_muting.lua")
 include("server/util/sv_id_mapping.lua")
+include("server/util/sv_general.lua")
 include("shared/logging/sh_logger.lua")
 
 hook.Add("TTT2PrePrepareRound", "MuterPreBeginRound", function(duration)
-    logDebug("Round is Preparing")
-    unmuteAll()
+    if canMute() then
+        unmuteAll()
+    end
 end)
 
 hook.Add("TTT2PreEndRound", "MuterPreBeginRonud", function(result, duration)
-    logDebug("Round is Ending")
-    unmuteAll()
+    if canMute() then
+        unmuteAll()
+    end
 end)
 
 hook.Add("TTT2PostPlayerDeath", "MuterPostPlayerDeath", function(victim, inflictor, attacker)
-    logInfo("Player " .. victim:Nick() .. " died")
-    logDebug(victim:GetRoleString())
-    mutePlayer(victim)
+    if canMute() then
+        mutePlayer(victim)
+    end
 end)
 
 hook.Add("PlayerSpawn", "MuterPlayerSpawn", function(ply, transition)
-    logInfo("Player " .. ply:Nick() .. " Spawned")
-    unmutePlayer(ply)
+    if canMute() then
+        unmutePlayer(ply)
+    end
 end)
 
 hook.Add("PlayerInitialSpawn", "MuterPlayerInitialSpawn", function(ply ,transition)
-    logInfo("Initial Spawn of Player " .. ply:Nick())
     autoMapPlayer(ply)
-    unmutePlayer(ply)
+
+    if canMute() then
+        unmutePlayer(ply)
+    end
 end)
