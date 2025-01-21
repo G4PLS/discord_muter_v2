@@ -1,5 +1,3 @@
-if not TTT2 then return end
-
 include("shared/globals/sh_globals.lua")
 
 --util.AddNetworkString(globals.network_strings.DRAW_MUTE)
