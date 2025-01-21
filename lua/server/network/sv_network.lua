@@ -61,7 +61,7 @@ end)
 
 net.Receive(network.server.SET_MUTER_ENABLED, function(len, ply)
     if isSuperAdmin(ply) then
-        local muter_enabled = net.ReadBit() == 1
+        local muter_enabled = net.ReadBit()
         RunConsoleCommand(con_vars.ENABLE_MUTER, tostring(muter_enabled))
         logDebug("Set " .. con_vars.ENABLE_MUTER .. " to " .. tostring(muter_enabled))
     end
