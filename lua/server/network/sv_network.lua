@@ -13,7 +13,7 @@ end
 -- Receiving from Client
 net.Receive(network.server.SET_DEBUG, function(len, ply)
     if isSuperAdmin(ply) then
-        local debug_enabled = net.ReadBit()
+        local debug_enabled = net.ReadBit() == 1
         RunConsoleCommand(con_vars.DEBUG, debug_enabled)
         logDebug("Set " .. con_vars.DEBUG .. " to " .. tostring(debug_enabled))
     end
@@ -21,7 +21,7 @@ end)
 
 net.Receive(network.server.SET_LOG_TIME, function(len, ply)
     if isSuperAdmin(ply) then
-        local time_logging_enabled = net.ReadBit()
+        local time_logging_enabled = net.ReadBit() == 1
         RunConsoleCommand(con_vars.LOG_TIME, time_logging_enabled)
         logDebug("Set " .. con_vars.LOG_TIME .. " to " .. tostring(time_logging_enabled))
     end
@@ -61,7 +61,7 @@ end)
 
 net.Receive(network.server.SET_MUTER_ENABLED, function(len, ply)
     if isSuperAdmin(ply) then
-        local muter_enabled = net.ReadBit()
+        local muter_enabled = net.ReadBit() == 1
         RunConsoleCommand(con_vars.ENABLE_MUTER, muter_enabled)
         logDebug("Set " .. con_vars.ENABLE_MUTER .. " to " .. tostring(muter_enabled))
     end
@@ -77,7 +77,7 @@ end)
 
 net.Receive(network.server.SET_AUTO_CONNECT, function(len, ply)
     if isSuperAdmin(ply) then
-        local auto_connect = net.ReadBit()
+        local auto_connect = net.ReadBit() == 1
         RunConsoleCommand(con_vars.AUTO_CONNECT, auto_connect)
         logDebug("Set " .. con_vars.AUTO_CONNECT .. " to " .. tostring(auto_connect))
     end
