@@ -84,6 +84,8 @@ function getIdMappingByPlayer(ply)
 end
 
 function autoMapPlayer(ply)
+    if ply:IsBot() then return end
+
     logInfo("Trying to automatically assign player a discord ID")
 
     if containsConnectionID(ply) then return end

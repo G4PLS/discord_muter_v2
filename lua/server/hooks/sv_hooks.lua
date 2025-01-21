@@ -14,7 +14,7 @@ end)
 
 hook.Add("TTT2PostPlayerDeath", "MuterPostPlayerDeath", function(victim, inflictor, attacker)
     logInfo("Player " .. victim:Nick() .. " died")
-    logDebug(ply:GetRoleString())
+    logDebug(victim:GetRoleString())
     mutePlayer(victim)
 end)
 

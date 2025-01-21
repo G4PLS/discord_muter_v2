@@ -78,7 +78,7 @@ function getMuteStatus(ply)
 end
 
 function mutePlayer(ply)
-    if not canMute() and not isRoundRunning() then return end
+    if not canMute() and not isRoundRunning() or ply:IsBot() then return end
 
     logInfo("Trying to mute Player " .. ply:Nick())
 
@@ -93,7 +93,7 @@ function mutePlayer(ply)
 end
 
 function unmutePlayer(ply)
-    if not canMute() then return end
+    if not canMute() or ply:IsBot() then return end
 
     logInfo("Trying to unmute player " .. ply:Nick())
 
