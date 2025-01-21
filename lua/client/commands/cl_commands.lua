@@ -81,6 +81,8 @@ end)
 concommand.Add(commands.SET_MUTE_DURATION, function(ply, cmd, args, argStr)
     local mute_duration = tonumber(args[1])
 
+    print("MUTE DURAITON")
+    print(mute_duration)
     if mute_duration == nil then
         return
     end
