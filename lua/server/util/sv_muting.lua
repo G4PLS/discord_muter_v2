@@ -60,6 +60,8 @@ function mutePlayer(ply)
     discordMute(ply)
 
     local duration = GetConVar(con_vars.MUTE_DURATION):GetInt()
+    logInfo("MUTE DURATION:")
+    logInfo(tostring(duration))
 
     if duration > 0 then
         timer.Simple(duration, function() unmutePlayer(ply) end)
