@@ -14,3 +14,9 @@ concommand.Add(commands.LIST_CON_VARS, function(ply, cmd, args, argStr)
         logDebug(value .. ":" .. GetConVar(value):GetString())
     end
 end)
+
+concommand.Add(commands.LIST_MUTED_PLAYERS, function(ply, cmd, args, argStr)
+    for key, value in pairs(_G.muted_players) do
+        logDebug(tostring(key) .. ":" .. tostring(value))
+    end
+end)

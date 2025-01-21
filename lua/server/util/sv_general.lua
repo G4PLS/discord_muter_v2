@@ -11,8 +11,6 @@ function getRoundState()
 end
 
 function isRoundRunning()
-    logDebug("ROUND RUNNING:")
-    logDebug(tostring(getRoundState()))
     return getRoundState() == 3
 end
 

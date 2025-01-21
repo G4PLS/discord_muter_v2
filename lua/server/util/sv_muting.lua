@@ -31,6 +31,7 @@ function setMuteStatus(ply, status)
     if not checkValidPlayer(ply) then
         return
     end
+
     logDebug("Set mute status for player " .. ply:Nick() .. " to " .. tostring(status))
     _G.muted_players[playerIdToString(ply)] = status
 end
@@ -52,7 +53,7 @@ function getMuteStatus(ply)
 end
 
 function mutePlayer(ply)
-    if isRoundRunning() or ply:IsBot() then return end
+    if not isRoundRunning() or ply:IsBot() then return end
 
     logInfo("Muting player " .. ply:Nick())
 
@@ -60,8 +61,6 @@ function mutePlayer(ply)
     discordMute(ply)
 
     local duration = GetConVar(con_vars.MUTE_DURATION):GetInt()
-    logInfo("MUTE DURATION:")
-    logInfo(tostring(duration))
 
     if duration > 0 then
         timer.Simple(duration, function() unmutePlayer(ply) end)
