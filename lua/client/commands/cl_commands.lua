@@ -31,7 +31,7 @@ concommand.Add(commands.SET_DEBUG_LOG_LEVELS, function(ply, cmd, args, argStr)
     local log_levels = ""
 
     for i=1, #args do
-        log_levels = args[i] .. "|"
+        log_levels = log_levels .. args[i] .. "|"
     end
 
     net.Start(network.server.SET_LOG_LEVELS)
@@ -87,8 +87,12 @@ concommand.Add(commands.SET_MUTE_DURATION, function(ply, cmd, args, argStr)
         return
     end
 
+    if mute_duration < 0 then
+        mute_duration = 0
+    end
+
     net.Start(network.server.SET_MUTE_DURATION)
-    net.WriteInt(mute_duration)
+    net.WriteUInt(mute_duration, 16)
     net.SendToServer()
 end)
 

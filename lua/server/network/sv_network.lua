@@ -79,7 +79,7 @@ net.Receive(network.server.SET_MUTE_DURATION, function(len, ply)
     logInfo("Trying to set " .. con_vars.MUTE_DURATION)
 
     if isSuperAdmin(ply) then
-        local mute_duration = net.ReadInt()
+        local mute_duration = net.ReadUInt(16)
         RunConsoleCommand(con_vars.MUTE_DURATION, mute_duration)
     end
 end)
