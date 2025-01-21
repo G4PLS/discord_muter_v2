@@ -14,5 +14,6 @@ function isRoundRunning()
 end
 
 function canMute()
+    print(GetConVar(con_vars.ENABLE_MUTER):GetBool())
     return GetConVar(con_vars.ENABLE_MUTER):GetBool() or false
 end
