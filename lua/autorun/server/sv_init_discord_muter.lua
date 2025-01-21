@@ -12,15 +12,15 @@ include("shared/globals/sh_globals.lua")
 --util.AddNetworkString(globals.network_strings.REQUEST_BOT_VERSION)
 
 -- Create Con Vars for Server
-CreateConVar(con_vars.DEBUG, 0, {FCVAR_ARCHIVE, FCVAR_NOTIFY}, "Print debug messages to the Console", 0, 1)
-CreateConVar(con_vars.LOG_TIME, 1, {FCVAR_ARCHIVE, FCVAR_NOTIFY}, "Print the time when debugging", 0, 1)
+CreateConVar(con_vars.DEBUG, 0, {FCVAR_ARCHIVE, FCVAR_NOTIFY}, "Print debug messages to the Console")
+CreateConVar(con_vars.LOG_TIME, 1, {FCVAR_ARCHIVE, FCVAR_NOTIFY}, "Print the time when debugging")
 CreateConVar(con_vars.LOG_LEVELS, "WARN|DEBUG|ERROR", {FCVAR_ARCHIVE, FCVAR_NOTIFY}, "Log levels to print")
 CreateConVar(con_vars.BOT_ENDPOINT, "http://localhost:37405", {FCVAR_ARCHIVE, FCVAR_NOTIFY}, "Sets the node bot endpoint.")
 CreateConVar(con_vars.BOT_API_KEY, "", {FCVAR_ARCHIVE, FCVAR_NOTIFY}, "Sets the node bot api-key.")
 CreateConVar(con_vars.SERVER_LINK, "https://discord.gg/", {FCVAR_ARCHIVE, FCVAR_NOTIFY}, "Sets the Discord server your bot is present on (eg: https://discord.gg/aBc123).")
-CreateConVar(con_vars.ENABLE_MUTER, 1, {FCVAR_ARCHIVE, FCVAR_NOTIFY}, "Sets the enabled state of the muter", 0, 1)
+CreateConVar(con_vars.ENABLE_MUTER, 1, {FCVAR_ARCHIVE, FCVAR_NOTIFY}, "Sets the enabled state of the muter")
 CreateConVar(con_vars.MUTE_DURATION, 5, {FCVAR_ARCHIVE, FCVAR_NOTIFY}, "Sets how long, in seconds, you are muted for after death. No effect if mute_round is on. ", 0, 300)
-CreateConVar(con_vars.AUTO_CONNECT, 0, {FCVAR_ARCHIVE, FCVAR_NOTIFY}, "Attempt to automatically match player name to discord name. This happens silently when the player connects. If it fails, it will prompt the user with the \"!discord NAME\" message.", 0, 1)
+CreateConVar(con_vars.AUTO_CONNECT, 0, {FCVAR_ARCHIVE, FCVAR_NOTIFY}, "Attempt to automatically match player name to discord name. This happens silently when the player connects. If it fails, it will prompt the user with the \"!discord NAME\" message.")
 
 -- Add Netork strings
 for key, value in pairs(network.server) do
